@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesBodyworkRouteImport } from './routes/services.bodywork'
+import { Route as ServicesMaintenanceRouteImport } from './routes/services.maintenance'
+import { Route as ServicesMechanicalRouteImport } from './routes/services.mechanical'
+import { Route as ServicesPaintworkRouteImport } from './routes/services.paintwork'
+import { Route as ServicesUsaCarsRouteImport } from './routes/services.usa-cars'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesBodyworkRoute = ServicesBodyworkRouteImport.update({
+  id: '/services/bodywork',
+  path: '/services/bodywork',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesMaintenanceRoute = ServicesMaintenanceRouteImport.update({
+  id: '/services/maintenance',
+  path: '/services/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesMechanicalRoute = ServicesMechanicalRouteImport.update({
+  id: '/services/mechanical',
+  path: '/services/mechanical',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesPaintworkRoute = ServicesPaintworkRouteImport.update({
+  id: '/services/paintwork',
+  path: '/services/paintwork',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesUsaCarsRoute = ServicesUsaCarsRouteImport.update({
+  id: '/services/usa-cars',
+  path: '/services/usa-cars',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/services/bodywork': typeof ServicesBodyworkRoute
+  '/services/maintenance': typeof ServicesMaintenanceRoute
+  '/services/mechanical': typeof ServicesMechanicalRoute
+  '/services/paintwork': typeof ServicesPaintworkRoute
+  '/services/usa-cars': typeof ServicesUsaCarsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/services/bodywork': typeof ServicesBodyworkRoute
+  '/services/maintenance': typeof ServicesMaintenanceRoute
+  '/services/mechanical': typeof ServicesMechanicalRoute
+  '/services/paintwork': typeof ServicesPaintworkRoute
+  '/services/usa-cars': typeof ServicesUsaCarsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/services/bodywork': typeof ServicesBodyworkRoute
+  '/services/maintenance': typeof ServicesMaintenanceRoute
+  '/services/mechanical': typeof ServicesMechanicalRoute
+  '/services/paintwork': typeof ServicesPaintworkRoute
+  '/services/usa-cars': typeof ServicesUsaCarsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/services/bodywork'
+    | '/services/maintenance'
+    | '/services/mechanical'
+    | '/services/paintwork'
+    | '/services/usa-cars'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/services/bodywork'
+    | '/services/maintenance'
+    | '/services/mechanical'
+    | '/services/paintwork'
+    | '/services/usa-cars'
+  id:
+    | '__root__'
+    | '/'
+    | '/services/bodywork'
+    | '/services/maintenance'
+    | '/services/mechanical'
+    | '/services/paintwork'
+    | '/services/usa-cars'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ServicesBodyworkRoute: typeof ServicesBodyworkRoute
+  ServicesMaintenanceRoute: typeof ServicesMaintenanceRoute
+  ServicesMechanicalRoute: typeof ServicesMechanicalRoute
+  ServicesPaintworkRoute: typeof ServicesPaintworkRoute
+  ServicesUsaCarsRoute: typeof ServicesUsaCarsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/bodywork': {
+      id: '/services/bodywork'
+      path: '/services/bodywork'
+      fullPath: '/services/bodywork'
+      preLoaderRoute: typeof ServicesBodyworkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/maintenance': {
+      id: '/services/maintenance'
+      path: '/services/maintenance'
+      fullPath: '/services/maintenance'
+      preLoaderRoute: typeof ServicesMaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/mechanical': {
+      id: '/services/mechanical'
+      path: '/services/mechanical'
+      fullPath: '/services/mechanical'
+      preLoaderRoute: typeof ServicesMechanicalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/paintwork': {
+      id: '/services/paintwork'
+      path: '/services/paintwork'
+      fullPath: '/services/paintwork'
+      preLoaderRoute: typeof ServicesPaintworkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/usa-cars': {
+      id: '/services/usa-cars'
+      path: '/services/usa-cars'
+      fullPath: '/services/usa-cars'
+      preLoaderRoute: typeof ServicesUsaCarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ServicesBodyworkRoute: ServicesBodyworkRoute,
+  ServicesMaintenanceRoute: ServicesMaintenanceRoute,
+  ServicesMechanicalRoute: ServicesMechanicalRoute,
+  ServicesPaintworkRoute: ServicesPaintworkRoute,
+  ServicesUsaCarsRoute: ServicesUsaCarsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -169,16 +169,20 @@
 }
 
 :root {
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.17 0 0);
-  --primary: oklch(0.55 0.22 27);
+  --background: oklch(0.98 0.002 250);
+  --foreground: oklch(0.15 0.01 250);
+  --primary: oklch(0.45 0.12 45);
   --primary-foreground: oklch(0.99 0 0);
-  --accent: oklch(0.58 0.23 27);
+  --accent: oklch(0.52 0.15 45);
   --accent-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.95 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --border: oklch(0.9 0 0);
-  --navy: oklch(0.14 0 0);
-  --navy-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.94 0.005 250);
+  --muted-foreground: oklch(0.5 0.02 250);
+  --border: oklch(0.88 0.005 250);
+  --navy: oklch(0.12 0.02 250);
+  --navy-foreground: oklch(0.97 0.005 250);
+  --gold: oklch(0.65 0.15 75);
 }
-@theme inline { --font-display: "Oswald", sans-serif; }
+@theme inline {
+  --font-display: "Oswald", sans-serif;
+  --color-gold: var(--gold);
+}
