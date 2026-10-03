@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import hero from "@/assets/hero.jpg";
 import s1 from "@/assets/s1.jpg";
 import s2 from "@/assets/s2.jpg";
 import s3 from "@/assets/s3.jpg";
 import s4 from "@/assets/s4.jpg";
 import s5 from "@/assets/s5.jpg";
+import { ContactModal } from "@/components/ContactModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,6 +33,8 @@ const blocks = [
 ];
 
 function Index() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="font-sans text-foreground">
       <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy-foreground/10">
@@ -48,7 +52,12 @@ function Index() {
             <a href="#steps" className="hover:text-gold transition-colors">Как работаем</a>
             <a href="#contact" className="hover:text-gold transition-colors">Контакты</a>
           </nav>
-          <a href="#contact" className="rounded-sm bg-gold px-6 py-2.5 text-sm font-semibold text-navy transition hover:bg-primary hover:text-primary-foreground">Получить расчёт</a>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="rounded-sm bg-gold px-6 py-2.5 text-sm font-semibold text-navy transition hover:bg-primary hover:text-primary-foreground"
+          >
+            Получить расчёт
+          </button>
         </div>
       </header>
 
@@ -64,7 +73,12 @@ function Index() {
           </h1>
           <p className="mt-8 max-w-2xl text-xl leading-relaxed opacity-90">Покупка авто из США — кузовной ремонт — покраска — полировка — авто готово. Один сервис и одна ответственность на всём пути.</p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#contact" className="rounded-sm bg-gold px-10 py-4 font-semibold uppercase tracking-wider text-navy transition hover:bg-primary hover:text-primary-foreground">Подобрать авто</a>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="rounded-sm bg-gold px-10 py-4 font-semibold uppercase tracking-wider text-navy transition hover:bg-primary hover:text-primary-foreground"
+            >
+              Подобрать авто
+            </button>
             <a href="#services" className="rounded-sm border-2 border-gold/50 px-10 py-4 font-semibold uppercase tracking-wider transition hover:border-gold hover:text-gold">Наши услуги</a>
           </div>
           <div className="mt-16 flex gap-1 text-gold text-lg">★ ★ ★ <span className="ml-4 text-base text-navy-foreground/80">Гарантия на все виды работ</span></div>
@@ -148,6 +162,8 @@ function Index() {
       </section>
 
       <footer className="bg-navy py-8 text-center text-sm text-navy-foreground/60 border-t border-navy-foreground/10">© 2026 Triumph Auto Service. Пригон, ремонт, покраска, обслуживание.</footer>
+      
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

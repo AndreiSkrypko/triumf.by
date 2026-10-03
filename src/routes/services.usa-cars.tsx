@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import s1 from "@/assets/s1.jpg";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { ContactModal } from "@/components/ContactModal";
 
 export const Route = createFileRoute("/services/usa-cars")({
   head: () => ({
@@ -13,6 +15,8 @@ export const Route = createFileRoute("/services/usa-cars")({
 });
 
 function UsaCarsPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="font-sans text-foreground">
       <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy-foreground/10">
@@ -30,7 +34,12 @@ function UsaCarsPage() {
             <a href="/#steps" className="hover:text-gold transition-colors">Как работаем</a>
             <a href="/#contact" className="hover:text-gold transition-colors">Контакты</a>
           </nav>
-          <a href="/#contact" className="rounded-sm bg-gold px-6 py-2.5 text-sm font-semibold text-navy transition hover:bg-primary hover:text-primary-foreground">Получить расчёт</a>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="rounded-sm bg-gold px-6 py-2.5 text-sm font-semibold text-navy transition hover:bg-primary hover:text-primary-foreground"
+          >
+            Получить расчёт
+          </button>
         </div>
       </header>
 
@@ -107,6 +116,8 @@ function UsaCarsPage() {
       </section>
 
       <footer className="bg-navy py-8 text-center text-sm text-navy-foreground/60 border-t border-navy-foreground/10">© 2026 Triumph Auto Service. Пригон, ремонт, покраска, обслуживание.</footer>
+      
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

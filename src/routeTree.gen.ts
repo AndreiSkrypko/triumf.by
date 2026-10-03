@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ServicesBodyworkRouteImport } from './routes/services.bodywork'
 import { Route as ServicesMaintenanceRouteImport } from './routes/services.maintenance'
 import { Route as ServicesMechanicalRouteImport } from './routes/services.mechanical'
@@ -19,6 +20,11 @@ import { Route as ServicesUsaCarsRouteImport } from './routes/services.usa-cars'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesBodyworkRoute = ServicesBodyworkRouteImport.update({
@@ -49,6 +55,7 @@ const ServicesUsaCarsRoute = ServicesUsaCarsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/thank-you': typeof ThankYouRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
   '/services/maintenance': typeof ServicesMaintenanceRoute
   '/services/mechanical': typeof ServicesMechanicalRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/thank-you': typeof ThankYouRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
   '/services/maintenance': typeof ServicesMaintenanceRoute
   '/services/mechanical': typeof ServicesMechanicalRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/thank-you': typeof ThankYouRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
   '/services/maintenance': typeof ServicesMaintenanceRoute
   '/services/mechanical': typeof ServicesMechanicalRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/thank-you'
     | '/services/bodywork'
     | '/services/maintenance'
     | '/services/mechanical'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/thank-you'
     | '/services/bodywork'
     | '/services/maintenance'
     | '/services/mechanical'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/thank-you'
     | '/services/bodywork'
     | '/services/maintenance'
     | '/services/mechanical'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ThankYouRoute: typeof ThankYouRoute
   ServicesBodyworkRoute: typeof ServicesBodyworkRoute
   ServicesMaintenanceRoute: typeof ServicesMaintenanceRoute
   ServicesMechanicalRoute: typeof ServicesMechanicalRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/bodywork': {
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ThankYouRoute: ThankYouRoute,
   ServicesBodyworkRoute: ServicesBodyworkRoute,
   ServicesMaintenanceRoute: ServicesMaintenanceRoute,
   ServicesMechanicalRoute: ServicesMechanicalRoute,
