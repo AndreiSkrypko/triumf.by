@@ -9,14 +9,15 @@ import s1 from "@/assets/s1.jpg";
 import s2 from "@/assets/s2.jpg";
 import s3 from "@/assets/s3.jpg";
 import s4 from "@/assets/s4.jpg";
-import s5 from "@/assets/s5.jpg";
+import sAnticor from "@/assets/s-anticor.jpg";
+import sMaintenance from "@/assets/s-maintenance.jpg";
 import { ContactModal } from "@/components/ContactModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Triumph Auto Service — авто под ключ из США и Канады" },
-      { name: "description", content: "Пригон авто из США/Канады, кузовной ремонт, покраска, слесарные работы и обслуживание. Автомобиль под ключ в одной компании." },
+      { name: "description", content: "Пригон авто из США/Канады, кузовной ремонт, покраска, антикор, слесарные работы и обслуживание. Автомобиль под ключ в одной компании." },
       { property: "og:title", content: "Triumph Auto Service — авто под ключ" },
       { property: "og:description", content: "Пригон, ремонт, покраска, слесарка и сопровождение — всё в одних руках." },
       { property: "og:type", content: "website" },
@@ -28,24 +29,26 @@ export const Route = createFileRoute("/")({
 
 const steps = [
   { t: "Пригон", d: "Аукцион, торги, доставка" },
-  { t: "Кузовной ремонт", d: "Стапель и геометрия" },
+  { t: "Кузовной ремонт", d: "Стапель, сварка" },
   { t: "Покраска", d: "Камера и подбор цвета" },
-  { t: "Слесарные", d: "Ходовая, двигатель, КПП" },
+  { t: "Слесарные", d: "Подвеска, ДВС, ГРМ" },
+  { t: "Антикор", d: "Защита кузова" },
   { t: "Сопровождение", d: "ТО на весь срок" },
 ];
 
 const blocks = [
   { img: s1, t: "Авто из США и Канады", d: "Подбор на аукционах Copart, IAAI и Manheim, проверка истории, торги, доставка и растаможка. Работаем по договору, прозрачный расчёт до покупки.", l: ["Подбор и проверка VIN", "Copart · IAAI · Manheim", "Доставка и таможня"], link: "/services/usa-cars" },
-  { img: s2, t: "Кузовные работы", d: "Восстановление геометрии кузова после ДТП на стапеле, замена и ремонт элементов, рихтовка.", l: ["Стапельные работы", "Замена элементов", "Рихтовка"], link: "/services/bodywork" },
+  { img: s2, t: "Кузовные работы", d: "Стапель, сварка, замена элементов и рихтовка. Закуп и подбор кузовных запчастей — с нашей стороны.", l: ["Стапель и сварка", "Подбор запчастей", "Рихтовка"], link: "/services/bodywork" },
   { img: s3, t: "Малярные работы", d: "Покраска в камере с точным подбором цвета, локальный ремонт и полировка до заводского блеска.", l: ["Подбор цвета", "Покраска в камере", "Полировка и защита"], link: "/services/paintwork" },
-  { img: s4, t: "Слесарные работы", d: "Ремонт ходовой, двигателя, тормозной системы. Диагностика и устранение скрытых проблем после пригона.", l: ["Диагностика", "Ходовая и тормоза", "Двигатель и КПП"], link: "/services/mechanical" },
-  { img: s5, t: "Сопровождение авто", d: "Обслуживаем автомобиль весь срок владения: масла, фильтры, плановое ТО, сезонные работы.", l: ["Масла и фильтры", "Плановое ТО", "Сезонное обслуживание"], link: "/services/maintenance" },
+  { img: s4, t: "Слесарные работы", d: "Тормоза, рулевое, подвеска, двигатель, замена масла, техжидкостей и ГРМ. Подбор слесарных запчастей с нашей стороны.", l: ["Тормоза и подвеска", "ДВС и ГРМ", "Закуп запчастей"], link: "/services/mechanical" },
+  { img: sAnticor, t: "Антикоррозийная обработка", d: "Защита днища, арок и скрытых полостей от коррозии — особенно важно для авто после пригона из США.", l: ["Скрытые полости", "Днище и арки", "По договору"], link: "/services/anticorrosion" },
+  { img: sMaintenance, t: "Сопровождение авто", d: "Обслуживаем автомобиль весь срок владения: масла, фильтры, плановое ТО, сезонные работы.", l: ["Масла и фильтры", "Плановое ТО", "Сезонное обслуживание"], link: "/services/maintenance" },
 ];
 
-const marquee = ["Copart · IAAI · Manheim", "Работаем по договору", "Кузовной ремонт", "Покраска в камере", "Полировка", "Слесарные работы", "Плановое ТО", "Авто под ключ"];
+const marquee = ["Copart · IAAI · Manheim", "Работаем по договору", "Кузовной ремонт и сварка", "Антикоррозийная обработка", "Подбор запчастей", "Слесарные работы", "Плановое ТО", "Авто под ключ"];
 
 const facts = [
-  ["5", "этапов в одних руках"],
+  ["6", "этапов в одних руках"],
   ["100%", "по договору и смете"],
   ["12 мес", "гарантия на работы"],
   ["24/7", "фотоотчёт по этапам"],
@@ -139,10 +142,10 @@ function Index() {
       <section id="steps" className="section-y relative mx-auto max-w-7xl px-4 sm:px-6">
         <div data-reveal className="reveal eyebrow text-gold">Процесс</div>
         <h2 data-reveal style={{ transitionDelay: "100ms" }} className="reveal mt-4 max-w-3xl font-display text-3xl font-bold uppercase leading-tight sm:text-4xl md:text-5xl">
-          Пять этапов — <span className="gold-text">одна команда</span>
+          Шесть этапов — <span className="gold-text">одна команда</span>
         </h2>
 
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-sm bg-navy-foreground/10 sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-sm bg-navy-foreground/10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {steps.map((s, i) => (
             <li
               key={s.t}

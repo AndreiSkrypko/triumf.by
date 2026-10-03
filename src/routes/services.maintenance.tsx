@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import s5 from "@/assets/s5.jpg";
+import sMaintenance from "@/assets/s-maintenance.jpg";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
@@ -31,14 +31,14 @@ function MaintenancePage() {
           { label: "Услуги", href: "/#services" },
           { label: "Сопровождение авто", href: "/services/maintenance" },
         ]}
-        serviceLabel="Услуга 05"
+        serviceLabel="Услуга 06"
         title={
           <>
             Сопровождение <span className="gold-text">авто</span>
           </>
         }
         description="Обслуживаем автомобиль весь срок владения: масла, фильтры, плановое ТО, сезонные работы. Ваш автомобиль всегда в идеальном состоянии."
-        image={s5}
+        image={sMaintenance}
         imageAlt="Сопровождение авто"
       />
       <ServiceStepsSection

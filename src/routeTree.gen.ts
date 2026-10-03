@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as ServicesAnticorrosionRouteImport } from './routes/services.anticorrosion'
 import { Route as ServicesBodyworkRouteImport } from './routes/services.bodywork'
 import { Route as ServicesMaintenanceRouteImport } from './routes/services.maintenance'
 import { Route as ServicesMechanicalRouteImport } from './routes/services.mechanical'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesAnticorrosionRoute = ServicesAnticorrosionRouteImport.update({
+  id: '/services/anticorrosion',
+  path: '/services/anticorrosion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesBodyworkRoute = ServicesBodyworkRouteImport.update({
@@ -56,6 +62,7 @@ const ServicesUsaCarsRoute = ServicesUsaCarsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/thank-you': typeof ThankYouRoute
+  '/services/anticorrosion': typeof ServicesAnticorrosionRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
   '/services/maintenance': typeof ServicesMaintenanceRoute
   '/services/mechanical': typeof ServicesMechanicalRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/thank-you': typeof ThankYouRoute
+  '/services/anticorrosion': typeof ServicesAnticorrosionRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
   '/services/maintenance': typeof ServicesMaintenanceRoute
   '/services/mechanical': typeof ServicesMechanicalRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/thank-you': typeof ThankYouRoute
+  '/services/anticorrosion': typeof ServicesAnticorrosionRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
   '/services/maintenance': typeof ServicesMaintenanceRoute
   '/services/mechanical': typeof ServicesMechanicalRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/thank-you'
+    | '/services/anticorrosion'
     | '/services/bodywork'
     | '/services/maintenance'
     | '/services/mechanical'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/thank-you'
+    | '/services/anticorrosion'
     | '/services/bodywork'
     | '/services/maintenance'
     | '/services/mechanical'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/thank-you'
+    | '/services/anticorrosion'
     | '/services/bodywork'
     | '/services/maintenance'
     | '/services/mechanical'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ThankYouRoute: typeof ThankYouRoute
+  ServicesAnticorrosionRoute: typeof ServicesAnticorrosionRoute
   ServicesBodyworkRoute: typeof ServicesBodyworkRoute
   ServicesMaintenanceRoute: typeof ServicesMaintenanceRoute
   ServicesMechanicalRoute: typeof ServicesMechanicalRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/thank-you'
       fullPath: '/thank-you'
       preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/anticorrosion': {
+      id: '/services/anticorrosion'
+      path: '/services/anticorrosion'
+      fullPath: '/services/anticorrosion'
+      preLoaderRoute: typeof ServicesAnticorrosionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/bodywork': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ThankYouRoute: ThankYouRoute,
+  ServicesAnticorrosionRoute: ServicesAnticorrosionRoute,
   ServicesBodyworkRoute: ServicesBodyworkRoute,
   ServicesMaintenanceRoute: ServicesMaintenanceRoute,
   ServicesMechanicalRoute: ServicesMechanicalRoute,
