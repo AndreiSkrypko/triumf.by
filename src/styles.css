@@ -181,3 +181,4 @@
   --navy: oklch(0.14 0 0);
   --navy-foreground: oklch(0.98 0 0);
 }
+@theme inline { --font-display: "Oswald", sans-serif; }
