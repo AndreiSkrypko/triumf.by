@@ -18,7 +18,7 @@ function BodyworkPage() {
       <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy-foreground/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 text-navy-foreground">
           <div className="flex items-center gap-4">
-            <img src="/favicon.png" alt="Triumph Auto Service" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
+            <img src="/image.png" alt="Triumph Auto Service" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
             <div className="font-display leading-none">
               <div className="text-xl font-bold tracking-wide">TRIUMPH</div>
               <div className="text-[10px] tracking-[0.3em] opacity-70 mt-1">AUTO SERVICE</div>
