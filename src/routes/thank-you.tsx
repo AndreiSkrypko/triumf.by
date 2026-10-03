@@ -6,6 +6,13 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/thank-you")({
+  head: () => ({
+    meta: [
+      { title: "Спасибо за заявку — Triumph Auto Service" },
+      { name: "description", content: "Ваша заявка принята. Мы свяжемся с вами в ближайшее время." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: ThankYouPage,
 });
 

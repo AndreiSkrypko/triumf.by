@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConsentRouteImport } from './routes/consent'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ServicesAnticorrosionRouteImport } from './routes/services.anticorrosion'
 import { Route as ServicesBodyworkRouteImport } from './routes/services.bodywork'
@@ -21,6 +23,16 @@ import { Route as ServicesUsaCarsRouteImport } from './routes/services.usa-cars'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsentRoute = ConsentRouteImport.update({
+  id: '/consent',
+  path: '/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThankYouRoute = ThankYouRouteImport.update({
@@ -61,6 +73,8 @@ const ServicesUsaCarsRoute = ServicesUsaCarsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/consent': typeof ConsentRoute
+  '/privacy': typeof PrivacyRoute
   '/thank-you': typeof ThankYouRoute
   '/services/anticorrosion': typeof ServicesAnticorrosionRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
@@ -71,6 +85,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/consent': typeof ConsentRoute
+  '/privacy': typeof PrivacyRoute
   '/thank-you': typeof ThankYouRoute
   '/services/anticorrosion': typeof ServicesAnticorrosionRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
@@ -82,6 +98,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/consent': typeof ConsentRoute
+  '/privacy': typeof PrivacyRoute
   '/thank-you': typeof ThankYouRoute
   '/services/anticorrosion': typeof ServicesAnticorrosionRoute
   '/services/bodywork': typeof ServicesBodyworkRoute
@@ -94,6 +112,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/consent'
+    | '/privacy'
     | '/thank-you'
     | '/services/anticorrosion'
     | '/services/bodywork'
@@ -104,6 +124,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/consent'
+    | '/privacy'
     | '/thank-you'
     | '/services/anticorrosion'
     | '/services/bodywork'
@@ -114,6 +136,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/consent'
+    | '/privacy'
     | '/thank-you'
     | '/services/anticorrosion'
     | '/services/bodywork'
@@ -125,6 +149,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConsentRoute: typeof ConsentRoute
+  PrivacyRoute: typeof PrivacyRoute
   ThankYouRoute: typeof ThankYouRoute
   ServicesAnticorrosionRoute: typeof ServicesAnticorrosionRoute
   ServicesBodyworkRoute: typeof ServicesBodyworkRoute
@@ -141,6 +167,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consent': {
+      id: '/consent'
+      path: '/consent'
+      fullPath: '/consent'
+      preLoaderRoute: typeof ConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thank-you': {
@@ -197,6 +237,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConsentRoute: ConsentRoute,
+  PrivacyRoute: PrivacyRoute,
   ThankYouRoute: ThankYouRoute,
   ServicesAnticorrosionRoute: ServicesAnticorrosionRoute,
   ServicesBodyworkRoute: ServicesBodyworkRoute,

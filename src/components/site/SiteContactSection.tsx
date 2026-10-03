@@ -1,3 +1,6 @@
+import { useRouter } from "@tanstack/react-router";
+import { FormPrivacyNote } from "./FormPrivacyNote";
+
 type SiteContactSectionProps = {
   goldPhrase: string;
   titleBefore: string;
@@ -13,6 +16,8 @@ export function SiteContactSection({
   description,
   submitLabel = "Получить расчёт",
 }: SiteContactSectionProps) {
+  const router = useRouter();
+
   return (
     <section id="contact" className="relative overflow-hidden border-t border-navy-foreground/10">
       <div className="absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-gold/8 blur-[130px]" />
@@ -32,7 +37,7 @@ export function SiteContactSection({
           className="reveal space-y-4 rounded-sm border border-navy-foreground/12 bg-navy-foreground/[0.04] p-5 backdrop-blur-sm sm:p-8"
           onSubmit={(e) => {
             e.preventDefault();
-            alert("Спасибо! Мы скоро свяжемся.");
+            router.navigate({ to: "/thank-you" });
           }}
         >
           <input
@@ -51,7 +56,7 @@ export function SiteContactSection({
           >
             {submitLabel}
           </button>
-          <p className="pt-1 text-center text-xs text-navy-foreground/40">Нажимая кнопку, вы соглашаетесь на обработку данных</p>
+          <FormPrivacyNote />
         </form>
       </div>
     </section>

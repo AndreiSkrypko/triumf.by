@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "@tanstack/react-router";
+import { FormPrivacyNote } from "@/components/site/FormPrivacyNote";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -107,6 +108,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           >
             Отправить
           </button>
+          <FormPrivacyNote />
         </form>
       </div>
     </div>
