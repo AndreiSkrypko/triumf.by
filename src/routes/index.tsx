@@ -5,7 +5,6 @@ import s2 from "@/assets/s2.jpg";
 import s3 from "@/assets/s3.jpg";
 import s4 from "@/assets/s4.jpg";
 import s5 from "@/assets/s5.jpg";
-import logo from "@/assets/logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +36,7 @@ function Index() {
       <header className="absolute inset-x-0 top-0 z-20">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-navy-foreground">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Triumph Auto Service" width={56} height={56} className="h-14 w-14 rounded-full" />
+            <img src="/favicon.png" alt="Triumph Auto Service" width={56} height={56} className="h-14 w-14 rounded-full" />
             <div className="font-display leading-tight">
               <div className="text-xl font-bold tracking-wide">TRIUMPH</div>
               <div className="text-[10px] tracking-[0.3em] opacity-70">AUTO SERVICE</div>
