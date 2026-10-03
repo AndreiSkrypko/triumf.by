@@ -34,12 +34,13 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-navy/90 backdrop-blur-sm" onClick={handleClose} />
-      <div className="relative bg-navy border border-gold/30 rounded-sm max-w-md w-full p-8 shadow-2xl">
+    <div className="fixed inset-0 z-[60] flex items-end justify-center p-0 sm:items-center sm:p-4">
+      <div className="absolute inset-0 bg-navy/90 backdrop-blur-sm" onClick={handleClose} aria-hidden />
+      <div className="relative max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-t-sm border border-gold/30 bg-navy p-6 shadow-2xl shadow-gold/10 sm:rounded-sm sm:p-8">
         <button
+          type="button"
           onClick={handleClose}
-          className="absolute top-4 right-4 text-navy-foreground/60 hover:text-gold transition-colors"
+          className="absolute top-4 right-4 text-navy-foreground/60 transition-colors hover:text-gold"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -47,8 +48,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           </svg>
         </button>
 
-        <h3 className="font-display text-2xl font-bold uppercase text-gold mb-2">Оставить заявку</h3>
-        <p className="text-navy-foreground/60 mb-6 text-sm">Заполните форму и мы свяжемся с вами</p>
+        <h3 className="mb-2 font-display text-2xl font-bold uppercase">
+          <span className="gold-text">Оставить заявку</span>
+        </h3>
+        <p className="mb-6 text-sm text-navy-foreground/60">Заполните форму и мы свяжемся с вами</p>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -100,7 +103,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           
           <button
             type="submit"
-            className="w-full bg-gold px-6 py-3 font-semibold uppercase tracking-wider text-navy rounded-sm transition hover:bg-gold/90 hover:shadow-lg hover:shadow-gold/20"
+            className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-6 py-3 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-lg shadow-gold/20 transition hover:shadow-xl hover:shadow-gold/30"
           >
             Отправить
           </button>

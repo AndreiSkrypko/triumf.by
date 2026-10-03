@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import hero from "@/assets/hero.jpg";
+import { SiteContactSection } from "@/components/site/SiteContactSection";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { useReveal } from "@/hooks/use-reveal";
 import s1 from "@/assets/s1.jpg";
 import s2 from "@/assets/s2.jpg";
 import s3 from "@/assets/s3.jpg";
@@ -47,81 +51,13 @@ const facts = [
   ["24/7", "фотоотчёт по этапам"],
 ];
 
-function useReveal() {
-  useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    if (typeof IntersectionObserver === "undefined") {
-      nodes.forEach((n) => n.classList.add("is-in"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("is-in");
-          io.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-    nodes.forEach((n) => io.observe(n));
-    return () => io.disconnect();
-  }, []);
-}
-
 function Index() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   useReveal();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <div className="min-h-screen bg-navy font-sans text-navy-foreground antialiased selection:bg-gold selection:text-navy">
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "border-b border-gold/20 bg-navy/80 py-2 backdrop-blur-xl" : "border-b border-transparent py-4"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6">
-          <a href="#top" className="group flex items-center gap-4">
-            <span className="relative">
-              <span className="absolute -inset-1 rounded-full bg-gold/25 opacity-0 blur-md transition group-hover:opacity-100" />
-              <img src="/image.png" alt="Triumph Auto Service" width={48} height={48} className="relative h-12 w-12 rounded-full object-cover ring-1 ring-gold/40" />
-            </span>
-            <span className="font-display leading-none">
-              <span className="block text-xl font-bold tracking-[0.18em]">TRIUMPH</span>
-              <span className="mt-1 block text-[10px] tracking-[0.42em] text-gold/80">AUTO SERVICE</span>
-            </span>
-          </a>
-
-          <nav className="hidden gap-9 text-[13px] font-semibold uppercase tracking-[0.14em] md:flex">
-            {[
-              ["Услуги", "#services"],
-              ["Как работаем", "#steps"],
-              ["Почему мы", "#facts"],
-              ["Контакты", "#contact"],
-            ].map(([label, href]) => (
-              <a key={href} href={href} className="group relative py-1 text-navy-foreground/75 transition-colors hover:text-gold">
-                {label}
-                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" />
-              </a>
-            ))}
-          </nav>
-
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="sheen rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-6 py-2.5 text-[13px] font-bold uppercase tracking-[0.12em] text-navy shadow-lg shadow-gold/20 transition hover:shadow-xl hover:shadow-gold/30"
-          >
-            Получить расчёт
-          </button>
-        </div>
-      </header>
+      <SiteHeader variant="home" onOpenModal={() => setIsModalOpen(true)} />
 
       <section id="top" className="grain relative min-h-screen overflow-hidden">
         <img
@@ -135,10 +71,10 @@ function Index() {
         <div className="absolute inset-0 bg-linear-to-t from-navy via-transparent to-navy/70" />
         <div className="absolute -left-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-[140px]" />
 
-        <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pb-28 pt-36">
-          <div data-reveal className="reveal flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.42em] text-gold">
-            <span className="h-px w-14 bg-linear-to-r from-transparent to-gold" />
-            Авто из США и Канады
+        <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-36">
+          <div data-reveal className="reveal flex flex-wrap items-center gap-3 text-gold sm:gap-4">
+            <span className="h-px w-10 bg-linear-to-r from-transparent to-gold sm:w-14" />
+            <span className="eyebrow">Авто из США и Канады</span>
           </div>
 
           <h1 data-reveal style={{ transitionDelay: "120ms" }} className="reveal mt-8 max-w-5xl font-display text-[clamp(2.8rem,8vw,7.5rem)] font-bold uppercase leading-[0.95] tracking-tight">
@@ -151,29 +87,30 @@ function Index() {
             Покупка авто из США — кузовной ремонт — покраска — полировка. Один сервис и одна ответственность на всём пути.
           </p>
 
-          <div data-reveal style={{ transitionDelay: "340ms" }} className="reveal mt-11 flex flex-wrap items-center gap-4">
+          <div data-reveal style={{ transitionDelay: "340ms" }} className="reveal mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-11 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <button
+              type="button"
               onClick={() => setIsModalOpen(true)}
-              className="sheen rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-11 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-xl shadow-gold/25 transition hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-gold/35"
+              className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-navy shadow-xl shadow-gold/25 transition hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-gold/35 sm:w-auto sm:px-11 sm:py-4 sm:tracking-[0.14em]"
             >
               Подобрать авто
             </button>
             <a
               href="#services"
-              className="rounded-sm border border-navy-foreground/25 px-11 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy-foreground/85 backdrop-blur-sm transition hover:border-gold/70 hover:bg-gold/5 hover:text-gold"
+              className="w-full rounded-sm border border-navy-foreground/25 px-8 py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-navy-foreground/85 backdrop-blur-sm transition hover:border-gold/70 hover:bg-gold/5 hover:text-gold sm:w-auto sm:px-11 sm:py-4 sm:tracking-[0.14em]"
             >
               Наши услуги
             </a>
           </div>
 
-          <div data-reveal style={{ transitionDelay: "460ms" }} className="reveal mt-20 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-sm border border-navy-foreground/10 bg-navy-foreground/10 backdrop-blur-md sm:grid-cols-3">
+          <div data-reveal style={{ transitionDelay: "460ms" }} className="reveal mt-12 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-sm border border-navy-foreground/10 bg-navy-foreground/10 backdrop-blur-md sm:mt-20 sm:grid-cols-3">
             {[
               ["Аукционы", "Copart · IAAI"],
               ["Договор", "фиксированная смета"],
               ["Гарантия", "на все виды работ"],
             ].map(([a, b]) => (
-              <div key={a} className="bg-navy/60 px-6 py-5">
-                <div className="font-display text-lg font-bold uppercase tracking-wide text-gold">{a}</div>
+              <div key={a} className="bg-navy/60 px-4 py-4 sm:px-6 sm:py-5">
+                <div className="font-display text-base font-bold uppercase tracking-wide text-gold sm:text-lg">{a}</div>
                 <div className="mt-1 text-xs uppercase tracking-[0.12em] text-navy-foreground/55">{b}</div>
               </div>
             ))}
@@ -186,10 +123,10 @@ function Index() {
         </a>
       </section>
 
-      <div className="overflow-hidden border-y border-gold/15 bg-navy py-4">
-        <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
+      <div className="overflow-hidden border-y border-gold/15 bg-navy py-3 sm:py-4">
+        <div className="marquee-track flex w-max gap-6 whitespace-nowrap sm:gap-10">
           {[...marquee, ...marquee].map((m, i) => (
-            <span key={i} className="flex items-center gap-10 font-display text-sm font-semibold uppercase tracking-[0.3em] text-navy-foreground/40">
+            <span key={i} className="flex items-center gap-6 font-display text-xs font-semibold uppercase tracking-[0.2em] text-navy-foreground/40 sm:gap-10 sm:text-sm sm:tracking-[0.3em]">
               {m}
               <span className="h-1 w-1 rotate-45 bg-gold" />
             </span>
@@ -197,9 +134,9 @@ function Index() {
         </div>
       </div>
 
-      <section id="steps" className="relative mx-auto max-w-7xl px-6 py-24">
-        <div data-reveal className="reveal text-xs font-semibold uppercase tracking-[0.42em] text-gold">Процесс</div>
-        <h2 data-reveal style={{ transitionDelay: "100ms" }} className="reveal mt-4 max-w-3xl font-display text-4xl font-bold uppercase leading-tight md:text-5xl">
+      <section id="steps" className="section-y relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div data-reveal className="reveal eyebrow text-gold">Процесс</div>
+        <h2 data-reveal style={{ transitionDelay: "100ms" }} className="reveal mt-4 max-w-3xl font-display text-3xl font-bold uppercase leading-tight sm:text-4xl md:text-5xl">
           Пять этапов — <span className="gold-text">одна команда</span>
         </h2>
 
@@ -209,7 +146,7 @@ function Index() {
               key={s.t}
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className="reveal group relative bg-navy px-7 py-10 transition-colors duration-300 hover:bg-navy-foreground/5"
+              className="reveal group relative bg-navy px-5 py-8 transition-colors duration-300 hover:bg-navy-foreground/5 sm:px-7 sm:py-10"
             >
               <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
               <div className="font-display text-5xl font-bold text-navy-foreground/10 transition-colors duration-300 group-hover:text-gold/70">0{i + 1}</div>
@@ -220,22 +157,22 @@ function Index() {
         </ol>
       </section>
 
-      <section id="services" className="relative mx-auto max-w-7xl px-6 py-24">
-        <div data-reveal className="reveal text-xs font-semibold uppercase tracking-[0.42em] text-gold">Полный цикл</div>
-        <h2 data-reveal style={{ transitionDelay: "100ms" }} className="reveal mt-4 max-w-4xl font-display text-4xl font-bold uppercase leading-[1.05] md:text-6xl">
+      <section id="services" className="section-y relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div data-reveal className="reveal eyebrow text-gold">Полный цикл</div>
+        <h2 data-reveal style={{ transitionDelay: "100ms" }} className="reveal mt-4 max-w-4xl font-display text-3xl font-bold uppercase leading-[1.05] sm:text-4xl md:text-6xl">
           Пригон, ремонт, покраска — <span className="gold-text">готово</span>
         </h2>
 
-        <div className="mt-20 space-y-24 md:space-y-32">
+        <div className="mt-12 space-y-16 sm:mt-20 sm:space-y-24 md:space-y-32">
           {blocks.map((b, i) => (
             <Link
               to={b.link}
               key={b.t}
               data-reveal
-              className="reveal group grid items-center gap-12 md:grid-cols-2 md:gap-16"
+              className="reveal group grid items-center gap-8 sm:gap-12 md:grid-cols-2 md:gap-16"
             >
               <div className={`relative ${i % 2 ? "md:order-2" : ""}`}>
-                <div className="pointer-events-none absolute -inset-3 rounded-sm border border-gold/20 transition duration-500 group-hover:-inset-5 group-hover:border-gold/50" />
+                <div className="pointer-events-none absolute -inset-2 rounded-sm border border-gold/20 transition duration-500 group-hover:-inset-4 group-hover:border-gold/50 sm:-inset-3 sm:group-hover:-inset-5" />
                 <div className="relative overflow-hidden rounded-sm">
                   <img
                     src={b.img}
@@ -247,13 +184,13 @@ function Index() {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-navy/80 via-navy/10 to-transparent" />
                 </div>
-                <div className="absolute -bottom-5 left-6 bg-linear-to-r from-gold-deep via-gold to-gold-light px-6 py-2 font-display text-2xl font-bold text-navy shadow-lg shadow-navy/50">
+                <div className="absolute -bottom-4 left-4 bg-linear-to-r from-gold-deep via-gold to-gold-light px-4 py-1.5 font-display text-xl font-bold text-navy shadow-lg shadow-navy/50 sm:-bottom-5 sm:left-6 sm:px-6 sm:py-2 sm:text-2xl">
                   0{i + 1}
                 </div>
               </div>
 
               <div>
-                <h3 className="font-display text-3xl font-bold uppercase leading-tight transition-colors duration-300 group-hover:text-gold md:text-4xl">{b.t}</h3>
+                <h3 className="font-display text-2xl font-bold uppercase leading-tight transition-colors duration-300 group-hover:text-gold sm:text-3xl md:text-4xl">{b.t}</h3>
                 <div className="mt-5 h-px w-20 bg-linear-to-r from-gold to-transparent transition-all duration-500 group-hover:w-32" />
                 <p className="mt-6 text-lg leading-relaxed text-navy-foreground/65">{b.d}</p>
                 <ul className="mt-7 space-y-3">
@@ -276,30 +213,31 @@ function Index() {
 
       <section id="facts" className="relative overflow-hidden border-y border-navy-foreground/10 bg-navy-foreground/[0.03]">
         <div className="absolute left-1/2 top-0 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-gold/8 blur-[120px]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-24 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="section-y relative mx-auto grid max-w-7xl gap-8 px-4 sm:grid-cols-2 sm:gap-10 sm:px-6 lg:grid-cols-4">
           {facts.map(([a, b], i) => (
-            <div key={a} data-reveal style={{ transitionDelay: `${i * 90}ms` }} className="reveal border-l border-gold/40 pl-6">
-              <div className="gold-text font-display text-5xl font-bold uppercase">{a}</div>
+            <div key={a} data-reveal style={{ transitionDelay: `${i * 90}ms` }} className="reveal border-l border-gold/40 pl-5 sm:pl-6">
+              <div className="gold-text font-display text-4xl font-bold uppercase sm:text-5xl">{a}</div>
               <div className="mt-2 text-sm uppercase tracking-[0.12em] text-navy-foreground/55">{b}</div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section className="section-y mx-auto max-w-7xl px-4 sm:px-6">
         <div
           data-reveal
-          className="reveal relative overflow-hidden rounded-sm border border-gold/25 bg-linear-to-br from-navy-foreground/[0.06] to-transparent p-10 md:p-14"
+          className="reveal relative overflow-hidden rounded-sm border border-gold/25 bg-linear-to-br from-navy-foreground/[0.06] to-transparent p-6 sm:p-10 md:p-14"
         >
           <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
           <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
             <div>
-              <h2 className="font-display text-3xl font-bold uppercase leading-tight md:text-4xl">Купили авто не через нас?</h2>
+              <h2 className="font-display text-2xl font-bold uppercase leading-tight sm:text-3xl md:text-4xl">Купили авто не через нас?</h2>
               <p className="mt-3 max-w-xl text-navy-foreground/65">Негде ремонтироваться — приезжайте к нам. Возьмём машину в работу на любом этапе.</p>
             </div>
             <button
+              type="button"
               onClick={() => setIsModalOpen(true)}
-              className="sheen shrink-0 rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-11 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-xl shadow-gold/20 transition hover:-translate-y-0.5"
+              className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-11 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-xl shadow-gold/20 transition hover:-translate-y-0.5 sm:w-auto sm:shrink-0"
             >
               Записаться
             </button>
@@ -307,52 +245,13 @@ function Index() {
         </div>
       </section>
 
-      <section id="contact" className="relative overflow-hidden border-t border-navy-foreground/10">
-        <div className="absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-gold/8 blur-[130px]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 py-24 md:grid-cols-2">
-          <div data-reveal className="reveal">
-            <div className="text-xs font-semibold uppercase tracking-[0.42em] text-gold">Заявка</div>
-            <h2 className="mt-4 font-display text-4xl font-bold uppercase leading-[1.1] md:text-5xl">
-              Рассчитаем стоимость <span className="gold-text">авто под ключ</span>
-            </h2>
-            <p className="mt-5 max-w-md text-navy-foreground/65">Оставьте контакты — перезвоним в течение 15 минут и подготовим прозрачный расчёт до покупки.</p>
-          </div>
+      <SiteContactSection
+        titleBefore="Рассчитаем стоимость"
+        goldPhrase="авто под ключ"
+        description="Оставьте контакты — перезвоним в течение 15 минут и подготовим прозрачный расчёт до покупки."
+      />
 
-          <form
-            data-reveal
-            style={{ transitionDelay: "120ms" }}
-            className="reveal space-y-4 rounded-sm border border-navy-foreground/12 bg-navy-foreground/[0.04] p-8 backdrop-blur-sm"
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert("Спасибо! Мы скоро свяжемся.");
-            }}
-          >
-            <input
-              required
-              placeholder="Ваше имя"
-              className="w-full rounded-sm border border-navy-foreground/20 bg-navy/40 px-5 py-4 outline-hidden transition placeholder:text-navy-foreground/40 focus:border-gold/60 focus:ring-1 focus:ring-gold/40"
-            />
-            <input
-              required
-              placeholder="Телефон"
-              className="w-full rounded-sm border border-navy-foreground/20 bg-navy/40 px-5 py-4 outline-hidden transition placeholder:text-navy-foreground/40 focus:border-gold/60 focus:ring-1 focus:ring-gold/40"
-            />
-            <button className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-6 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-lg shadow-gold/20 transition hover:shadow-xl hover:shadow-gold/30">
-              Получить расчёт
-            </button>
-            <p className="pt-1 text-center text-xs text-navy-foreground/40">Нажимая кнопку, вы соглашаетесь на обработку данных</p>
-          </form>
-        </div>
-      </section>
-
-      <footer className="border-t border-navy-foreground/10 bg-navy">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm text-navy-foreground/45 md:flex-row">
-          <div className="flex items-center gap-3 font-display tracking-[0.3em] text-navy-foreground/70">
-            TRIUMPH <span className="h-1 w-1 rotate-45 bg-gold" /> AUTO SERVICE
-          </div>
-          <div>© 2026 Пригон, ремонт, покраска, обслуживание.</div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>

@@ -273,6 +273,40 @@ html {
   }
 }
 
+.site-header-offset {
+  padding-top: 4.25rem;
+}
+
+@media (min-width: 640px) {
+  .site-header-offset {
+    padding-top: 5.5rem;
+  }
+}
+
+.section-y {
+  padding-block: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-y {
+    padding-block: 6rem;
+  }
+}
+
+.eyebrow {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.42em;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
