@@ -142,3 +142,28 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --background: oklch(0.985 0.004 250);
+  --foreground: oklch(0.22 0.03 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.03 255);
+  --primary: oklch(0.36 0.09 255);
+  --primary-foreground: oklch(0.98 0.005 250);
+  --secondary: oklch(0.95 0.01 250);
+  --secondary-foreground: oklch(0.3 0.06 255);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.68 0.13 60);
+  --accent-foreground: oklch(0.2 0.03 255);
+  --border: oklch(0.9 0.01 250);
+  --navy: oklch(0.2 0.04 258);
+  --navy-foreground: oklch(0.96 0.01 250);
+  --radius: 0.5rem;
+}
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --font-display: "Manrope", sans-serif;
+  --font-sans: "Manrope", sans-serif;
+}
