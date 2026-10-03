@@ -62,13 +62,13 @@ function Index() {
       <section id="top" className="grain relative min-h-screen overflow-hidden">
         <img
           src={hero}
-          alt="Автомобиль после покраски и полировки"
+          alt="Dodge Challenger в премиальном сервисе Triumph Auto"
           width={1600}
-          height={1008}
-          className="absolute inset-0 h-full w-full scale-105 object-cover"
+          height={900}
+          className="absolute inset-0 h-full w-full scale-105 object-cover object-[62%_center] sm:object-[58%_center] md:object-center"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/85 to-navy/20" />
-        <div className="absolute inset-0 bg-linear-to-t from-navy via-transparent to-navy/70" />
+        <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/88 to-navy/35 md:via-navy/85 md:to-navy/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/20 to-navy/75" />
         <div className="absolute -left-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-[140px]" />
 
         <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-36">
