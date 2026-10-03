@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import s1 from "@/assets/s1.jpg";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 export const Route = createFileRoute("/services/usa-cars")({
   head: () => ({
@@ -14,16 +15,17 @@ export const Route = createFileRoute("/services/usa-cars")({
 function UsaCarsPage() {
   return (
     <div className="font-sans text-foreground">
-      <header className="absolute inset-x-0 top-0 z-20">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-navy-foreground">
-          <div className="flex items-center gap-3">
-            <img src="/favicon.png" alt="Triumph Auto Service" width={56} height={56} className="h-14 w-14 rounded-full" />
-            <div className="font-display leading-tight">
+      <header className="sticky top-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy-foreground/10">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 text-navy-foreground">
+          <div className="flex items-center gap-4">
+            <img src="/favicon.png" alt="Triumph Auto Service" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
+            <div className="font-display leading-none">
               <div className="text-xl font-bold tracking-wide">TRIUMPH</div>
-              <div className="text-[10px] tracking-[0.3em] opacity-70">AUTO SERVICE</div>
+              <div className="text-[10px] tracking-[0.3em] opacity-70 mt-1">AUTO SERVICE</div>
             </div>
           </div>
-          <nav className="hidden gap-8 text-sm font-semibold md:flex">
+          <nav className="flex gap-6 text-sm font-semibold">
+            <a href="/" className="hover:text-gold transition-colors">Главная</a>
             <a href="/#services" className="hover:text-gold transition-colors">Услуги</a>
             <a href="/#steps" className="hover:text-gold transition-colors">Как работаем</a>
             <a href="/#contact" className="hover:text-gold transition-colors">Контакты</a>
@@ -32,10 +34,16 @@ function UsaCarsPage() {
         </div>
       </header>
 
+      <div className="bg-navy border-b border-navy-foreground/10">
+        <div className="mx-auto max-w-7xl px-6 py-2">
+          <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Услуги", href: "/#services" }, { label: "Авто из США и Канады", href: "/services/usa-cars" }]} />
+        </div>
+      </div>
+
       <section className="relative min-h-[60vh] overflow-hidden bg-navy text-navy-foreground">
         <img src={s1} alt="Авто из США" width={1600} height={1008} className="absolute inset-0 h-full w-full object-cover opacity-70" />
         <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/75 to-transparent" />
-        <div className="relative mx-auto flex min-h-[60vh] max-w-7xl flex-col justify-center px-6 pb-16 pt-32">
+        <div className="relative mx-auto flex min-h-[60vh] max-w-7xl flex-col justify-center px-6 pb-16 pt-20">
           <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
             <span className="h-px w-12 bg-gold" />Услуга 01
           </div>
