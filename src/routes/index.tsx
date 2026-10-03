@@ -67,9 +67,11 @@ function Index() {
           height={900}
           className="absolute inset-0 h-full w-full scale-105 object-cover object-[62%_center] sm:object-[58%_center] md:object-center"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/88 to-navy/35 md:via-navy/85 md:to-navy/20" />
-        <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/20 to-navy/75" />
+        <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/88 to-navy/30 md:via-navy/82 md:to-navy/15" />
+        <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/15 to-navy/70" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-transparent via-red-950/10 to-red-900/25 mix-blend-soft-light" />
         <div className="absolute -left-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-[140px]" />
+        <div className="absolute -right-24 top-1/3 h-72 w-72 rounded-full bg-red-600/15 blur-[120px]" />
 
         <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-36">
           <div data-reveal className="reveal flex flex-wrap items-center gap-3 text-gold sm:gap-4">
