@@ -3,6 +3,7 @@ import s1 from "@/assets/s1.jpg";
 import { COMPANY } from "@/lib/company";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
+import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
 
@@ -37,18 +38,31 @@ function UsaCarsPage() {
             Авто из <span className="gold-text">США и Канады</span>
           </>
         }
-        description={`Подбор на аукционах Copart, IAAI и Manheim. Подбор авто и участие в торгах — ${COMPANY.prices.usaSelectionByn} BYN. Работаем по договору — проверка истории, доставка и растаможка.`}
+        description="Подбор на аукционах Copart, IAAI и Manheim. Работаем по договору — проверка истории, торги, доставка и растаможка."
         image={s1}
         imageAlt="Авто из США"
+      />
+      <ServiceOfferCardsSection
+        eyebrow="Прайс"
+        title="Подбор и"
+        titleGold="торги"
+        offers={[
+          {
+            title: "Подбор авто и участие в торгах",
+            priceFrom: COMPANY.prices.usaSelectionByn,
+            desc: "Copart, IAAI, Manheim — проверка VIN и сопровождение сделки. Остальные расходы согласуем до покупки.",
+            featured: true,
+          },
+        ]}
       />
       <ServiceStepsSection
         title="Как мы"
         titleGold="работаем"
         steps={[
-          { step: "01", title: "Подбор и проверка VIN", desc: "Анализируем аукционы Copart, IAAI и Manheim, проверяем историю автомобиля по VIN, оцениваем реальное состояние и стоимость ремонта." },
-          { step: "02", title: "Участие в торгах", desc: "Участвуем в аукционах от вашего имени, контролируем ставку, избегаем переплат. Опыт работы с американскими аукционами с 2020 года." },
-          { step: "03", title: "Доставка и таможня", desc: "Организуем доставку в порт, оформляем документы, проводим растаможку. Полное сопровождение до момента получения автомобиля." },
-          { step: "04", title: "Ремонт и подготовка", desc: "Кузовной ремонт, покраска, полировка. Автомобиль готов к эксплуатации — вы получаете машину под ключ." },
+          { title: "Подбор и проверка VIN", desc: "Анализируем аукционы Copart, IAAI и Manheim, проверяем историю автомобиля по VIN, оцениваем реальное состояние и стоимость ремонта." },
+          { title: "Участие в торгах", desc: "Участвуем в аукционах от вашего имени, контролируем ставку, избегаем переплат. Опыт работы с американскими аукционами с 2020 года." },
+          { title: "Доставка и таможня", desc: "Организуем доставку в порт, оформляем документы, проводим растаможку. Полное сопровождение до момента получения автомобиля." },
+          { title: "Ремонт и подготовка", desc: "Кузовной ремонт, покраска, полировка. Автомобиль готов к эксплуатации — вы получаете машину под ключ." },
         ]}
       />
       <ServiceFeaturesSection

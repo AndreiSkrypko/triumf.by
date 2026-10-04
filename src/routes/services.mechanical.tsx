@@ -2,8 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import s4 from "@/assets/s4.jpg";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
+import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
+import { COMPANY } from "@/lib/company";
 
 export const Route = createFileRoute("/services/mechanical")({
   head: () => ({
@@ -43,37 +45,44 @@ function MechanicalPage() {
         image={s4}
         imageAlt="Слесарные работы"
       />
+      <ServiceOfferCardsSection
+        eyebrow="Прайс"
+        title="Слесарный"
+        titleGold="ремонт"
+        offers={[
+          {
+            title: "Слесарный ремонт",
+            priceFrom: COMPANY.prices.mechanicalFromByn,
+            desc: "Диагностика и работы по ходовой, тормозам, рулевому, ДВС и расходникам — стоимость зависит от объёма.",
+            featured: true,
+          },
+        ]}
+      />
       <ServiceStepsSection
-        title="Наши"
-        titleGold="услуги"
+        title="Направления"
+        titleGold="работ"
         steps={[
           {
-            step: "01",
             title: "Ремонт тормозной системы",
             desc: "Диагностика и ремонт тормозов: колодки, диски, суппорты, тормозные магистрали. Безопасность на дороге.",
           },
           {
-            step: "02",
             title: "Ремонт рулевой",
             desc: "Ремонт рулевой рейки, наконечников, тяг и элементов управления. Устранение люфтов и стуков.",
           },
           {
-            step: "03",
             title: "Ремонт подвески",
             desc: "Замена и ремонт амортизаторов, рычагов, сайлентблоков, опор. Восстановление после пригона и ДТП.",
           },
           {
-            step: "04",
             title: "Масло ДВС и техжидкости",
             desc: "Замена моторного масла, фильтров, охлаждающей, тормозной и других рабочих жидкостей по регламенту.",
           },
           {
-            step: "05",
             title: "Замена ГРМ",
             desc: "Замена ремня или цепи ГРМ, роликов и сопутствующих элементов. Предотвращаем критические поломки двигателя.",
           },
           {
-            step: "06",
             title: "Ремонт ДВС",
             desc: "Диагностика и ремонт двигателя: устранение течей, замена прокладок, восстановление агрегата после пригона.",
           },

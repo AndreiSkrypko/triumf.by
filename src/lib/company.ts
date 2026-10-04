@@ -11,5 +11,12 @@ export const COMPANY = {
   prices: {
     anticorFromByn: 600,
     usaSelectionByn: 400,
+    fullPaintFromByn: 9000,
+    mechanicalFromByn: 50,
+    bodyRepairFromByn: 300,
+    straighteningFromByn: 300,
+    geometryFromByn: 900,
+    partsRepairFromByn: 300,
+    weldingFromByn: 100,
   },
 } as const;

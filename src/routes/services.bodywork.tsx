@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import s2 from "@/assets/s2.jpg";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
+import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
-import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
+import { COMPANY } from "@/lib/company";
 
 export const Route = createFileRoute("/services/bodywork")({
   head: () => ({
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/services/bodywork")({
   }),
   component: BodyworkPage,
 });
+
+const { prices } = COMPANY;
 
 function BodyworkPage() {
   return (
@@ -43,34 +46,36 @@ function BodyworkPage() {
         image={s2}
         imageAlt="Кузовной ремонт"
       />
-      <ServiceStepsSection
+      <ServiceOfferCardsSection
+        eyebrow="Прайс"
         title="Наши"
         titleGold="услуги"
-        steps={[
+        offers={[
           {
-            step: "01",
-            title: "Стапельные работы",
-            desc: "Восстановление геометрии кузова на профессиональном стапеле. Контроль точности с помощью лазерного измерительного оборудования.",
+            title: "Кузовной ремонт",
+            priceFrom: prices.bodyRepairFromByn,
+            desc: "Восстановление элементов кузова после ДТП и коррозии.",
+            featured: true,
           },
           {
-            step: "02",
-            title: "Замена элементов",
-            desc: "Замена повреждённых деталей кузова. Подбираем и приобретаем кузовные запчасти — оригинал или качественные аналоги из США и Европы.",
+            title: "Рихтовка и выпрямление",
+            priceFrom: prices.straighteningFromByn,
+            desc: "Ремонт деформированных деталей без замены, сохранение оригинального металла.",
           },
           {
-            step: "03",
+            title: "Восстановление геометрии кузова",
+            priceFrom: prices.geometryFromByn,
+            desc: "Стапельные работы и контроль геометрии на профессиональном оборудовании.",
+          },
+          {
+            title: "Ремонт и замена деталей",
+            priceFrom: prices.partsRepairFromByn,
+            desc: "Замена повреждённых элементов, подбор и покупка запчастей с нашей стороны.",
+          },
+          {
             title: "Сварочные работы",
-            desc: "Ремонт и восстановление элементов кузова сваркой: лонжероны, пороги, листовой металл. Контроль качества швов и геометрии.",
-          },
-          {
-            step: "04",
-            title: "Рихтовка",
-            desc: "Ремонт деформированных элементов без замены. Восстанавливаем форму и сохраняем оригинальный металл.",
-          },
-          {
-            step: "05",
-            title: "Выправка рамы",
-            desc: "Выправка рамы и лонжеронов после серьёзных ДТП. Восстанавливаем несущую конструкцию автомобиля.",
+            priceFrom: prices.weldingFromByn,
+            desc: "Ремонт лонжеронов, порогов и листового металла с контролем качества швов.",
           },
         ]}
       />

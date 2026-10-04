@@ -3,6 +3,7 @@ import sAnticor from "@/assets/s-anticor.jpg";
 import { COMPANY } from "@/lib/company";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
+import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
 
@@ -44,27 +45,36 @@ function AnticorrosionPage() {
         image={sAnticor}
         imageAlt="Антикоррозийная обработка автомобиля"
       />
+      <ServiceOfferCardsSection
+        eyebrow="Прайс"
+        title="Антикор"
+        titleGold="обработка"
+        offers={[
+          {
+            title: "Антикоррозийная обработка",
+            priceFrom: COMPANY.prices.anticorFromByn,
+            desc: "Комплексная защита днища, арок и скрытых полостей — объём работ согласуем по состоянию авто.",
+            featured: true,
+          },
+        ]}
+      />
       <ServiceStepsSection
         title="Этапы"
         titleGold="обработки"
         steps={[
           {
-            step: "01",
             title: "Диагностика и мойка",
             desc: "Осматриваем днище и скрытые зоны, оцениваем состояние металла, выполняем подготовительную мойку и сушку.",
           },
           {
-            step: "02",
             title: "Подготовка поверхности",
             desc: "Удаляем ржавчину и старые покрытия, обезжириваем и подготавливаем металл под нанесение защитных составов.",
           },
           {
-            step: "03",
             title: "Скрытые полости",
             desc: "Обрабатываем лонжероны, пороги, стойки и другие полости восковыми или полимерными составами.",
           },
           {
-            step: "04",
             title: "Днище и арки",
             desc: "Наносим антигравий и антикор на днище, арки и уязвимые элементы для защиты от влаги и реагентов.",
           },

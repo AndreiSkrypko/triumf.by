@@ -2,8 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import s3 from "@/assets/s3.jpg";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
+import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
+import { COMPANY } from "@/lib/company";
 
 export const Route = createFileRoute("/services/paintwork")({
   head: () => ({
@@ -40,14 +42,27 @@ function PaintworkPage() {
         image={s3}
         imageAlt="Малярные работы"
       />
+      <ServiceOfferCardsSection
+        eyebrow="Прайс"
+        title="Ориентир"
+        titleGold="по стоимости"
+        offers={[
+          {
+            title: "Полная покраска автомобиля",
+            priceFrom: COMPANY.prices.fullPaintFromByn,
+            desc: "Покраска кузова в камере с подбором цвета и контролем качества покрытия.",
+            featured: true,
+          },
+        ]}
+      />
       <ServiceStepsSection
-        title="Наши"
-        titleGold="услуги"
+        title="Что"
+        titleGold="делаем"
         steps={[
-          { step: "01", title: "Подбор цвета", desc: "Точный подбор цвета по спектрофотометру. Совпадение с заводским цветом до 99%." },
-          { step: "02", title: "Покраска в камере", desc: "Покраска в профессиональной покрасочной камере с контролем температуры и влажности." },
-          { step: "03", title: "Локальный ремонт", desc: "Ремонт небольших повреждений без полной покраски элемента. Экономия времени и средств." },
-          { step: "04", title: "Полировка и защита", desc: "Полировка до заводского блеска, нанесение керамического покрытия для защиты от царапин." },
+          { title: "Подбор цвета", desc: "Точный подбор цвета по спектрофотометру. Совпадение с заводским цветом до 99%." },
+          { title: "Покраска в камере", desc: "Покраска в профессиональной покрасочной камере с контролем температуры и влажности." },
+          { title: "Локальный ремонт", desc: "Ремонт небольших повреждений без полной покраски элемента. Экономия времени и средств." },
+          { title: "Полировка и защита", desc: "Полировка до заводского блеска, нанесение керамического покрытия для защиты от царапин." },
         ]}
       />
       <ServiceFeaturesSection

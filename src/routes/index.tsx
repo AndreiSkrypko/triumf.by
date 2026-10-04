@@ -12,7 +12,10 @@ import s4 from "@/assets/s4.jpg";
 import sAnticor from "@/assets/s-anticor.jpg";
 import sMaintenance from "@/assets/s-maintenance.jpg";
 import { ContactModal } from "@/components/ContactModal";
+import { ServicePriceBadge } from "@/components/site/ServiceOfferCardsSection";
 import { COMPANY } from "@/lib/company";
+
+const { prices } = COMPANY;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,12 +41,53 @@ const steps = [
 ];
 
 const blocks = [
-  { img: s1, t: "Авто из США и Канады", d: `Подбор на аукционах Copart, IAAI и Manheim, участие в торгах — ${COMPANY.prices.usaSelectionByn} BYN. Работаем по договору, прозрачный расчёт до покупки.`, l: ["Подбор и проверка VIN", "Copart · IAAI · Manheim", "Доставка и таможня"], link: "/services/usa-cars" },
-  { img: s2, t: "Кузовные работы", d: "Стапель, сварка, замена элементов и рихтовка. Подбор и покупка кузовных запчастей — с нашей стороны.", l: ["Стапель и сварка", "Подбор запчастей", "Рихтовка"], link: "/services/bodywork" },
-  { img: s3, t: "Малярные работы", d: "Покраска в камере с точным подбором цвета, локальный ремонт и полировка до заводского блеска.", l: ["Подбор цвета", "Покраска в камере", "Полировка и защита"], link: "/services/paintwork" },
-  { img: s4, t: "Слесарные работы", d: "Тормоза, рулевое, подвеска, двигатель, замена масла, техжидкостей и ГРМ. Подбор и покупка слесарных запчастей — с нашей стороны.", l: ["Тормоза и подвеска", "ДВС и ГРМ", "Подбор запчастей"], link: "/services/mechanical" },
-  { img: sAnticor, t: "Антикоррозийная обработка", d: `Защита днища, арок и скрытых полостей от коррозии — от ${COMPANY.prices.anticorFromByn} BYN. Особенно актуально для авто после пригона из США.`, l: ["Скрытые полости", "Днище и арки", "По договору"], link: "/services/anticorrosion" },
-  { img: sMaintenance, t: "Сопровождение авто", d: "Обслуживаем автомобиль весь срок владения: масла, фильтры, плановое ТО, сезонные работы.", l: ["Масла и фильтры", "Плановое ТО", "Сезонное обслуживание"], link: "/services/maintenance" },
+  {
+    img: s1,
+    t: "Авто из США и Канады",
+    d: "Подбор на аукционах Copart, IAAI и Manheim. Работаем по договору, прозрачный расчёт до покупки.",
+    l: ["Подбор и проверка VIN", "Copart · IAAI · Manheim", "Доставка и таможня"],
+    link: "/services/usa-cars",
+    priceFrom: prices.usaSelectionByn,
+  },
+  {
+    img: s2,
+    t: "Кузовные работы",
+    d: "Стапель, сварка, замена элементов и рихтовка. Подбор и покупка кузовных запчастей — с нашей стороны.",
+    l: ["Стапель и сварка", "Подбор запчастей", "Рихтовка"],
+    link: "/services/bodywork",
+    priceFrom: prices.bodyRepairFromByn,
+  },
+  {
+    img: s3,
+    t: "Малярные работы",
+    d: "Покраска в камере с точным подбором цвета, локальный ремонт и полировка до заводского блеска.",
+    l: ["Подбор цвета", "Покраска в камере", "Полировка и защита"],
+    link: "/services/paintwork",
+    priceFrom: prices.fullPaintFromByn,
+  },
+  {
+    img: s4,
+    t: "Слесарные работы",
+    d: "Тормоза, рулевое, подвеска, двигатель, замена масла, техжидкостей и ГРМ. Подбор и покупка слесарных запчастей — с нашей стороны.",
+    l: ["Тормоза и подвеска", "ДВС и ГРМ", "Подбор запчастей"],
+    link: "/services/mechanical",
+    priceFrom: prices.mechanicalFromByn,
+  },
+  {
+    img: sAnticor,
+    t: "Антикоррозийная обработка",
+    d: "Защита днища, арок и скрытых полостей от коррозии. Особенно актуально для авто после пригона из США.",
+    l: ["Скрытые полости", "Днище и арки", "По договору"],
+    link: "/services/anticorrosion",
+    priceFrom: prices.anticorFromByn,
+  },
+  {
+    img: sMaintenance,
+    t: "Сопровождение авто",
+    d: "Обслуживаем автомобиль весь срок владения: масла, фильтры, плановое ТО, сезонные работы.",
+    l: ["Масла и фильтры", "Плановое ТО", "Сезонное обслуживание"],
+    link: "/services/maintenance",
+  },
 ];
 
 const marquee = ["Copart · IAAI · Manheim", "Работаем по договору", "Кузовной ремонт и сварка", "Антикоррозийная обработка", "Подбор запчастей", "Слесарные работы", "Плановое ТО", "Авто под ключ"];
@@ -189,9 +233,11 @@ function Index() {
                     className="aspect-4/3 w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-navy/80 via-navy/10 to-transparent" />
-                </div>
-                <div className="absolute -bottom-4 left-4 bg-linear-to-r from-gold-deep via-gold to-gold-light px-4 py-1.5 font-display text-xl font-bold text-navy shadow-lg shadow-navy/50 sm:-bottom-5 sm:left-6 sm:px-6 sm:py-2 sm:text-2xl">
-                  0{i + 1}
+                  {"priceFrom" in b && b.priceFrom != null ? (
+                    <div className="absolute bottom-4 left-4 rounded-sm border border-gold/35 bg-navy/85 px-4 py-3 backdrop-blur-sm sm:bottom-5 sm:left-5 sm:px-5">
+                      <ServicePriceBadge amount={b.priceFrom} />
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
