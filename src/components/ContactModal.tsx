@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { FormPrivacyNote } from "@/components/site/FormPrivacyNote";
+import { submitLead } from "@/lib/submit-lead";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -11,18 +12,32 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    message: ""
+    message: "",
   });
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Send to Telegram bot when token is provided
-    console.log("Form data:", formData);
-    onClose();
-    router.navigate({ to: "/thank-you" });
+    setSending(true);
+    setError(null);
+    try {
+      await submitLead({
+        name: formData.name,
+        phone: formData.phone,
+        message: formData.message,
+        source: "Модальное окно",
+      });
+      handleClose();
+      router.navigate({ to: "/thank-you" });
+    } catch {
+      setError("Не удалось отправить заявку. Попробуйте позже или позвоните нам.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,6 +46,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   const handleClose = () => {
     setFormData({ name: "", phone: "", message: "" });
+    setError(null);
     onClose();
   };
 
@@ -53,10 +69,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           <span className="gold-text">Оставить заявку</span>
         </h3>
         <p className="mb-6 text-sm text-navy-foreground/60">Заполните форму и мы свяжемся с вами</p>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-navy-foreground/80 mb-2">
+            <label htmlFor="name" className="mb-2 block text-sm font-medium text-navy-foreground/80">
               Имя
             </label>
             <input
@@ -66,13 +82,14 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-navy-foreground/5 border border-navy-foreground/20 rounded-sm text-navy-foreground placeholder:text-navy-foreground/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition"
+              disabled={sending}
+              className="w-full rounded-sm border border-navy-foreground/20 bg-navy-foreground/5 px-4 py-3 text-navy-foreground transition placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 focus:outline-none disabled:opacity-60"
               placeholder="Ваше имя"
             />
           </div>
-          
+
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-navy-foreground/80 mb-2">
+            <label htmlFor="phone" className="mb-2 block text-sm font-medium text-navy-foreground/80">
               Телефон
             </label>
             <input
@@ -82,13 +99,14 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-navy-foreground/5 border border-navy-foreground/20 rounded-sm text-navy-foreground placeholder:text-navy-foreground/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition"
+              disabled={sending}
+              className="w-full rounded-sm border border-navy-foreground/20 bg-navy-foreground/5 px-4 py-3 text-navy-foreground transition placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 focus:outline-none disabled:opacity-60"
               placeholder="+375 (XX) XXX-XX-XX"
             />
           </div>
-          
+
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-navy-foreground/80 mb-2">
+            <label htmlFor="message" className="mb-2 block text-sm font-medium text-navy-foreground/80">
               Сообщение
             </label>
             <textarea
@@ -97,16 +115,20 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               value={formData.message}
               onChange={handleChange}
               rows={4}
-              className="w-full px-4 py-3 bg-navy-foreground/5 border border-navy-foreground/20 rounded-sm text-navy-foreground placeholder:text-navy-foreground/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition resize-none"
+              disabled={sending}
+              className="w-full resize-none rounded-sm border border-navy-foreground/20 bg-navy-foreground/5 px-4 py-3 text-navy-foreground transition placeholder:text-navy-foreground/40 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 focus:outline-none disabled:opacity-60"
               placeholder="Опишите вашу задачу..."
             />
           </div>
-          
+
+          {error ? <p className="text-sm text-red-400">{error}</p> : null}
+
           <button
             type="submit"
-            className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-6 py-3 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-lg shadow-gold/20 transition hover:shadow-xl hover:shadow-gold/30"
+            disabled={sending}
+            className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-6 py-3 text-sm font-bold uppercase tracking-[0.14em] text-navy shadow-lg shadow-gold/20 transition hover:shadow-xl hover:shadow-gold/30 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Отправить
+            {sending ? "Отправка…" : "Отправить"}
           </button>
           <FormPrivacyNote />
         </form>
