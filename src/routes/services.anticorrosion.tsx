@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sAnticor from "@/assets/s-anticor.jpg";
+import { COMPANY } from "@/lib/company";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
@@ -39,7 +40,7 @@ function AnticorrosionPage() {
             Антикоррозийная <span className="gold-text">обработка</span>
           </>
         }
-        description="Комплексная защита кузова от коррозии: подготовка поверхности, обработка скрытых полостей, днища и арок. Особенно актуально для авто после пригона из США."
+        description={`Комплексная защита кузова от коррозии: подготовка, скрытые полости, днище и арки. Стоимость — от ${COMPANY.prices.anticorFromByn} BYN. Особенно актуально для авто после пригона из США.`}
         image={sAnticor}
         imageAlt="Антикоррозийная обработка автомобиля"
       />

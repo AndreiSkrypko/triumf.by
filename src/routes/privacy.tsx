@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalList, LegalPageShell, LegalSection } from "@/components/site/LegalPageShell";
+import { COMPANY } from "@/lib/company";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -23,9 +24,13 @@ function PrivacyPage() {
           (далее — Оператор) в соответствии с законодательством Республики Беларусь о персональных данных.
         </p>
         <p>
-          Оператор: Triumph Auto Service. Контакт для обращений по вопросам персональных данных:{" "}
-          <a href="mailto:info@triumph-auto.by" className="text-gold hover:underline">
-            info@triumph-auto.by
+          Оператор: {COMPANY.name}, {COMPANY.address}. УНП {COMPANY.unp}. Контакт:{" "}
+          <a href={COMPANY.phoneHref} className="text-gold hover:underline">
+            {COMPANY.phone}
+          </a>
+          ,{" "}
+          <a href={`mailto:${COMPANY.email}`} className="text-gold hover:underline">
+            {COMPANY.email}
           </a>
           .
         </p>
@@ -80,8 +85,8 @@ function PrivacyPage() {
         />
         <p className="mt-3">
           Для реализации прав направьте запрос на{" "}
-          <a href="mailto:info@triumph-auto.by" className="text-gold hover:underline">
-            info@triumph-auto.by
+          <a href={`mailto:${COMPANY.email}`} className="text-gold hover:underline">
+            {COMPANY.email}
           </a>
           .
         </p>

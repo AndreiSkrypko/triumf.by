@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalList, LegalPageShell, LegalSection } from "@/components/site/LegalPageShell";
+import { COMPANY } from "@/lib/company";
 
 export const Route = createFileRoute("/consent")({
   head: () => ({
@@ -53,8 +54,8 @@ function ConsentPage() {
         <p>
           Согласие действует до достижения целей обработки или до его отзыва. Отзыв согласия возможен путём направления
           обращения на{" "}
-          <a href="mailto:info@triumph-auto.by" className="text-gold hover:underline">
-            info@triumph-auto.by
+          <a href={COMPANY.phoneHref} className="text-gold hover:underline">
+            {COMPANY.phone}
           </a>
           .
         </p>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import s1 from "@/assets/s1.jpg";
+import { COMPANY } from "@/lib/company";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
@@ -36,7 +37,7 @@ function UsaCarsPage() {
             Авто из <span className="gold-text">США и Канады</span>
           </>
         }
-        description="Подбор на аукционах Copart, IAAI и Manheim. Работаем по договору — проверка истории, торги, доставка и растаможка с прозрачным расчётом до покупки."
+        description={`Подбор на аукционах Copart, IAAI и Manheim. Подбор авто и участие в торгах — ${COMPANY.prices.usaSelectionByn} BYN. Работаем по договору — проверка истории, доставка и растаможка.`}
         image={s1}
         imageAlt="Авто из США"
       />
@@ -56,7 +57,7 @@ function UsaCarsPage() {
         features={[
           { title: "Работаем по договору", desc: "Заключаем договор до старта работ и фиксируем смету — все расходы прозрачны до покупки." },
           { title: "Опыт работы", desc: "Более 500 автомобилей из США и Канады за 5 лет работы." },
-          { title: "Гарантия", desc: "Гарантия на все виды работ — от подбора до ремонта." },
+          { title: "Стоимость подбора", desc: `Подбор автомобиля и участие в торгах — ${COMPANY.prices.usaSelectionByn} BYN. Остальные расходы согласуем до покупки.` },
         ]}
       />
     </ServicePageShell>
