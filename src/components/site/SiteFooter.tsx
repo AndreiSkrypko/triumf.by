@@ -4,20 +4,44 @@ import { COMPANY } from "@/lib/company";
 export function SiteFooter() {
   return (
     <footer className="border-t border-navy-foreground/10 bg-navy">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 font-display tracking-[0.2em] text-navy-foreground/70 sm:gap-3 sm:tracking-[0.3em]">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="lg:col-span-2">
+            <div className="flex flex-wrap items-center gap-2 font-display tracking-[0.2em] text-navy-foreground/80 sm:gap-3 sm:tracking-[0.3em]">
               TRIUMPH <span className="h-1 w-1 rotate-45 bg-gold" /> AUTO SERVICE
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-navy-foreground/55">{COMPANY.address}</p>
-            <a href={COMPANY.phoneHref} className="mt-2 inline-block text-sm font-semibold text-gold transition hover:text-gold-light">
-              {COMPANY.phone}
-            </a>
-            <p className="mt-2 text-xs text-navy-foreground/45">УНП {COMPANY.unp}</p>
+            <div className="mt-5 space-y-2 text-sm text-navy-foreground/75">
+              <p>
+                <span className="text-navy-foreground/50">Адрес: </span>
+                {COMPANY.addressLine}
+              </p>
+              <p>
+                <span className="text-navy-foreground/50">Телефон: </span>
+                <a href={COMPANY.phoneHref} className="font-semibold text-gold transition hover:text-gold-light">
+                  {COMPANY.phone}
+                </a>
+              </p>
+              <p>
+                <span className="text-navy-foreground/50">УНП: </span>
+                {COMPANY.unp}
+              </p>
+            </div>
+            <Link to="/contacts" className="mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-gold transition hover:text-gold-light">
+              Все контакты →
+            </Link>
           </div>
 
-          <nav className="flex flex-col gap-2 text-sm text-navy-foreground/55">
+          <nav className="flex flex-col gap-2 text-sm text-navy-foreground/65">
+            <span className="eyebrow text-gold">Разделы</span>
+            <Link to="/contacts" className="transition hover:text-gold">
+              Контакты
+            </Link>
+            <Link to="/#services" className="transition hover:text-gold">
+              Услуги
+            </Link>
+          </nav>
+
+          <nav className="flex flex-col gap-2 text-sm text-navy-foreground/65">
             <span className="eyebrow text-gold">Документы</span>
             <Link to="/privacy" className="transition hover:text-gold">
               Политика ПДн
@@ -25,18 +49,13 @@ export function SiteFooter() {
             <Link to="/consent" className="transition hover:text-gold">
               Согласие на обработку
             </Link>
-          </nav>
-
-          <div className="text-sm text-navy-foreground/55">
-            <span className="eyebrow text-gold">Гарантия</span>
-            <p className="mt-3">{COMPANY.warrantyShort}</p>
-            <p className="mt-4 text-xs leading-relaxed text-navy-foreground/45">
-              Антикор — от {COMPANY.prices.anticorFromByn} BYN · Подбор авто и торги — {COMPANY.prices.usaSelectionByn} BYN
+            <p className="mt-4 text-xs text-navy-foreground/50">
+              Гарантия {COMPANY.warrantyShort} · Антикор от {COMPANY.prices.anticorFromByn} BYN
             </p>
-          </div>
+          </nav>
         </div>
 
-        <div className="mt-8 border-t border-navy-foreground/10 pt-6 text-center text-xs text-navy-foreground/45 sm:text-left sm:text-sm">
+        <div className="mt-10 border-t border-navy-foreground/10 pt-6 text-center text-xs text-navy-foreground/45 sm:text-left sm:text-sm">
           © 2026 Пригон, ремонт, покраска, обслуживание.
         </div>
       </div>

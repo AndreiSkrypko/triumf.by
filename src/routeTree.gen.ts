@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConsentRouteImport } from './routes/consent'
+import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ServicesAnticorrosionRouteImport } from './routes/services.anticorrosion'
@@ -28,6 +29,11 @@ const IndexRoute = IndexRouteImport.update({
 const ConsentRoute = ConsentRouteImport.update({
   id: '/consent',
   path: '/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -74,6 +80,7 @@ const ServicesUsaCarsRoute = ServicesUsaCarsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/consent': typeof ConsentRoute
+  '/contacts': typeof ContactsRoute
   '/privacy': typeof PrivacyRoute
   '/thank-you': typeof ThankYouRoute
   '/services/anticorrosion': typeof ServicesAnticorrosionRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/consent': typeof ConsentRoute
+  '/contacts': typeof ContactsRoute
   '/privacy': typeof PrivacyRoute
   '/thank-you': typeof ThankYouRoute
   '/services/anticorrosion': typeof ServicesAnticorrosionRoute
@@ -99,6 +107,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/consent': typeof ConsentRoute
+  '/contacts': typeof ContactsRoute
   '/privacy': typeof PrivacyRoute
   '/thank-you': typeof ThankYouRoute
   '/services/anticorrosion': typeof ServicesAnticorrosionRoute
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/consent'
+    | '/contacts'
     | '/privacy'
     | '/thank-you'
     | '/services/anticorrosion'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/consent'
+    | '/contacts'
     | '/privacy'
     | '/thank-you'
     | '/services/anticorrosion'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/consent'
+    | '/contacts'
     | '/privacy'
     | '/thank-you'
     | '/services/anticorrosion'
@@ -150,6 +162,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConsentRoute: typeof ConsentRoute
+  ContactsRoute: typeof ContactsRoute
   PrivacyRoute: typeof PrivacyRoute
   ThankYouRoute: typeof ThankYouRoute
   ServicesAnticorrosionRoute: typeof ServicesAnticorrosionRoute
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/consent'
       fullPath: '/consent'
       preLoaderRoute: typeof ConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -238,6 +258,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConsentRoute: ConsentRoute,
+  ContactsRoute: ContactsRoute,
   PrivacyRoute: PrivacyRoute,
   ThankYouRoute: ThankYouRoute,
   ServicesAnticorrosionRoute: ServicesAnticorrosionRoute,
