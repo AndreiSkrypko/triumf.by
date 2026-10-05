@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import sAnticor from "@/assets/s-anticor.jpg";
+import sAnticor from "@/assets/s-anticor.webp";
 import { COMPANY } from "@/lib/company";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";

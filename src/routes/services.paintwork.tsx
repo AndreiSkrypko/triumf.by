@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import s3 from "@/assets/s3.jpg";
+import s3 from "@/assets/s3.webp";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";

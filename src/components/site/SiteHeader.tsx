@@ -186,7 +186,14 @@ function LogoMark() {
     <>
       <span className="relative shrink-0">
         <span className="absolute -inset-1 rounded-full bg-gold/25 opacity-0 blur-md transition group-hover:opacity-100" />
-        <img src="/image.png" alt="" width={48} height={48} className="relative h-10 w-10 rounded-full object-cover ring-1 ring-gold/40 sm:h-12 sm:w-12" />
+        <img
+          src="/logo.webp"
+          alt=""
+          width={48}
+          height={48}
+          decoding="async"
+          className="relative h-10 w-10 rounded-full object-cover ring-1 ring-gold/40 sm:h-12 sm:w-12"
+        />
       </span>
       <span className="min-w-0 font-display leading-none">
         <span className="block truncate text-base font-bold tracking-[0.14em] sm:text-xl sm:tracking-[0.18em]">TRIUMPH</span>

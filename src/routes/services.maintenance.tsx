@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import sMaintenance from "@/assets/s-maintenance.jpg";
+import sMaintenance from "@/assets/s-maintenance.webp";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServicePageShell } from "@/components/site/ServicePageShell";

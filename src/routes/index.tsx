@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import hero from "@/assets/hero.jpg";
+import hero from "@/assets/hero.webp";
 import { SiteContactSection } from "@/components/site/SiteContactSection";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { useReveal } from "@/hooks/use-reveal";
-import s1 from "@/assets/s1.jpg";
-import s2 from "@/assets/s2.jpg";
-import s3 from "@/assets/s3.jpg";
-import s4 from "@/assets/s4.jpg";
-import sAnticor from "@/assets/s-anticor.jpg";
-import sMaintenance from "@/assets/s-maintenance.jpg";
+import s1 from "@/assets/s1.webp";
+import s2 from "@/assets/s2.webp";
+import s3 from "@/assets/s3.webp";
+import s4 from "@/assets/s4.webp";
+import sAnticor from "@/assets/s-anticor.webp";
+import sMaintenance from "@/assets/s-maintenance.webp";
 import { ContactModal } from "@/components/ContactModal";
 import { ServicePriceBadge } from "@/components/site/ServiceOfferCardsSection";
 import { COMPANY } from "@/lib/company";
@@ -113,6 +113,9 @@ function Index() {
           alt="Dodge Challenger в премиальном сервисе Triumph Auto"
           width={1600}
           height={900}
+          sizes="100vw"
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 h-full w-full scale-105 object-cover object-[62%_center] sm:object-[58%_center] md:object-center"
         />
         <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/88 to-navy/30 md:via-navy/82 md:to-navy/15" />
@@ -228,8 +231,10 @@ function Index() {
                     src={b.img}
                     alt={b.t}
                     loading="lazy"
+                    decoding="async"
                     width={1024}
                     height={768}
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     className="aspect-4/3 w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-navy/80 via-navy/10 to-transparent" />

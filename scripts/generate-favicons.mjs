@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const publicDir = join(dirname(fileURLToPath(import.meta.url)), "..", "public");
-const src = join(publicDir, "image.png");
+const src = join(dirname(fileURLToPath(import.meta.url)), "brand-logo-source.png");
 
 const sizes = [
   ["favicon.png", 32],
@@ -14,7 +14,7 @@ const sizes = [
 for (const [name, size] of sizes) {
   await sharp(src)
     .resize(size, size, { fit: "cover", position: "centre" })
-    .png({ compressionLevel: 9 })
+    .png({ compressionLevel: 9, palette: true })
     .toFile(join(publicDir, name));
 }
 

@@ -22,7 +22,16 @@ export function ServiceHero({ breadcrumb, serviceLabel, title, description, imag
       </div>
 
       <section className="grain relative min-h-[55vh] overflow-hidden md:min-h-[62vh]">
-        <img src={image} alt={imageAlt} width={1600} height={1008} className="absolute inset-0 h-full w-full scale-105 object-cover" />
+        <img
+          src={image}
+          alt={imageAlt}
+          width={1600}
+          height={1008}
+          sizes="100vw"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full scale-105 object-cover"
+        />
         <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/88 to-navy/25" />
         <div className="absolute inset-0 bg-linear-to-t from-navy via-transparent to-navy/60" />
         <div className="absolute -right-32 top-1/3 h-80 w-80 rounded-full bg-gold/10 blur-[120px]" />
