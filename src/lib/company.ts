@@ -11,7 +11,7 @@ export const COMPANY = {
   prices: {
     anticorFromByn: 600,
     usaSelectionByn: 400,
-    fullPaintFromByn: 9000,
+    fullPaintFromByn: 900,
     mechanicalFromByn: 50,
     bodyRepairFromByn: 300,
     straighteningFromByn: 300,

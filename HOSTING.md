@@ -24,10 +24,12 @@ npm run build:hosting
 
 ## 3. Telegram-заявки
 
-На сервере в каталоге `api/`:
+Ничего настраивать на сервере не нужно: токен бота @triumph_auto_service_bot и ID чата прописаны прямо в коде.
 
-1. Скопируйте `api/lead.config.example.php` → `api/lead.config.php`.
-2. Укажите `bot_token` и `chat_id` (те же, что для бота @triumph_auto_service_bot).
+- `public/api/lead.php` — отправка на hoster.by (PHP);
+- `telegram-bot.config.ts` — отправка при `npm run dev` и на Vercel.
+
+Если меняете бота или чат, обновите значения в обоих файлах.
 
 Формы на сайте отправляют POST на `/api/lead`; `.htaccess` перенаправляет запрос на `api/lead.php`.
 
