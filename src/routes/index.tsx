@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import hero from "@/assets/hero.webp";
+import { HomeHero } from "@/components/site/HomeHero";
 import { SiteContactSection } from "@/components/site/SiteContactSection";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { StepsTimeline } from "@/components/site/StepsTimeline";
 import { useReveal } from "@/hooks/use-reveal";
 import s1 from "@/assets/s1.webp";
 import s2 from "@/assets/s2.webp";
@@ -22,15 +23,6 @@ export const Route = createFileRoute("/")({
   head: () => buildHead("/"),
   component: Index,
 });
-
-const steps = [
-  { t: "Пригон", d: "Аукцион, торги, доставка" },
-  { t: "Кузовной ремонт", d: "Стапель, сварка" },
-  { t: "Покраска", d: "Камера и подбор цвета" },
-  { t: "Слесарные", d: "Подвеска, ДВС, ГРМ" },
-  { t: "Антикор", d: "Защита кузова" },
-  { t: "Сопровождение", d: "ТО на весь срок" },
-];
 
 const blocks = [
   {
@@ -99,74 +91,7 @@ function Index() {
     <div className="min-h-screen bg-navy font-sans text-navy-foreground antialiased selection:bg-gold selection:text-navy">
       <SiteHeader variant="home" onOpenModal={() => setIsModalOpen(true)} />
 
-      <section id="top" className="grain relative min-h-screen overflow-hidden">
-        <img
-          src={hero}
-          alt="Dodge Challenger в премиальном сервисе Triumph Auto"
-          width={1600}
-          height={900}
-          sizes="100vw"
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 h-full w-full scale-105 object-cover object-[62%_center] sm:object-[58%_center] md:object-center"
-        />
-        <div className="absolute inset-0 bg-linear-to-r from-navy via-navy/88 to-navy/30 md:via-navy/82 md:to-navy/15" />
-        <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/15 to-navy/70" />
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-transparent via-red-950/10 to-red-900/25 mix-blend-soft-light" />
-        <div className="absolute -left-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-[140px]" />
-        <div className="absolute -right-24 top-1/3 h-72 w-72 rounded-full bg-red-600/15 blur-[120px]" />
-
-        <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-36">
-          <div data-reveal className="reveal flex flex-wrap items-center gap-3 text-gold sm:gap-4">
-            <span className="h-px w-10 bg-linear-to-r from-transparent to-gold sm:w-14" />
-            <span className="eyebrow">Авто из США и Канады</span>
-          </div>
-
-          <h1 data-reveal style={{ transitionDelay: "120ms" }} className="reveal mt-8 max-w-5xl font-display text-[clamp(2.8rem,8vw,7.5rem)] font-bold uppercase leading-[0.95] tracking-tight">
-            Автомобиль
-            <br />
-            <span className="gold-text">под ключ</span>
-          </h1>
-
-          <p data-reveal style={{ transitionDelay: "240ms" }} className="reveal mt-9 max-w-xl text-lg leading-relaxed text-navy-foreground/75 md:text-xl">
-            Покупка авто из США — кузовной ремонт — покраска — полировка. Один сервис и одна ответственность на всём пути.
-          </p>
-
-          <div data-reveal style={{ transitionDelay: "340ms" }} className="reveal mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-11 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="sheen w-full rounded-sm bg-linear-to-r from-gold-deep via-gold to-gold-light px-8 py-3.5 text-sm font-bold uppercase tracking-[0.12em] text-navy shadow-xl shadow-gold/25 transition hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-gold/35 sm:w-auto sm:px-11 sm:py-4 sm:tracking-[0.14em]"
-            >
-              Подобрать авто
-            </button>
-            <a
-              href="#services"
-              className="w-full rounded-sm border border-navy-foreground/25 px-8 py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-navy-foreground/85 backdrop-blur-sm transition hover:border-gold/70 hover:bg-gold/5 hover:text-gold sm:w-auto sm:px-11 sm:py-4 sm:tracking-[0.14em]"
-            >
-              Наши услуги
-            </a>
-          </div>
-
-          <div data-reveal style={{ transitionDelay: "460ms" }} className="reveal mt-12 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-sm border border-navy-foreground/10 bg-navy-foreground/10 backdrop-blur-md sm:mt-20 sm:grid-cols-3">
-            {[
-              ["Аукционы", "Copart · IAAI · Manheim"],
-              ["Договор", "работаем официально"],
-              ["Гарантия", "3 года на работы"],
-            ].map(([a, b]) => (
-              <div key={a} className="bg-navy/60 px-4 py-4 sm:px-6 sm:py-5">
-                <div className="font-display text-base font-bold uppercase tracking-wide text-gold sm:text-lg">{a}</div>
-                <div className="mt-1 text-xs uppercase tracking-[0.12em] text-navy-foreground/55">{b}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <a href="#steps" aria-label="Листать вниз" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-navy-foreground/50 transition hover:text-gold md:flex">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-          <span className="h-10 w-px bg-linear-to-b from-gold to-transparent" />
-        </a>
-      </section>
+      <HomeHero onOpenModal={() => setIsModalOpen(true)} />
 
       <div className="overflow-hidden border-y border-gold/15 bg-navy py-3 sm:py-4">
         <div className="marquee-track flex w-max gap-6 whitespace-nowrap sm:gap-10">
@@ -179,28 +104,7 @@ function Index() {
         </div>
       </div>
 
-      <section id="steps" className="section-y relative mx-auto max-w-7xl px-4 sm:px-6">
-        <div data-reveal className="reveal eyebrow text-gold">Процесс</div>
-        <h2 data-reveal style={{ transitionDelay: "100ms" }} className="reveal mt-4 max-w-3xl font-display text-3xl font-bold uppercase leading-tight sm:text-4xl md:text-5xl">
-          Шесть этапов — <span className="gold-text">одна команда</span>
-        </h2>
-
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-sm bg-navy-foreground/10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          {steps.map((s, i) => (
-            <li
-              key={s.t}
-              data-reveal
-              style={{ transitionDelay: `${i * 90}ms` }}
-              className="reveal group relative bg-navy px-5 py-8 transition-colors duration-300 hover:bg-navy-foreground/5 sm:px-7 sm:py-10"
-            >
-              <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
-              <div className="font-display text-5xl font-bold text-navy-foreground/10 transition-colors duration-300 group-hover:text-gold/70">0{i + 1}</div>
-              <div className="mt-4 font-display text-lg font-semibold uppercase tracking-wide">{s.t}</div>
-              <div className="mt-2 text-sm text-navy-foreground/50">{s.d}</div>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <StepsTimeline />
 
       <section id="services" className="section-y relative mx-auto max-w-7xl px-4 sm:px-6">
         <div data-reveal className="reveal eyebrow text-gold">Полный цикл</div>
