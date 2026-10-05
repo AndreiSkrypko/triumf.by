@@ -5,6 +5,7 @@ import { SiteContactSection } from "@/components/site/SiteContactSection";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { StepsTimeline } from "@/components/site/StepsTimeline";
+import { useAnchorScroll } from "@/hooks/use-anchor-scroll";
 import { useReveal } from "@/hooks/use-reveal";
 import s1 from "@/assets/s1.webp";
 import s2 from "@/assets/s2.webp";
@@ -86,6 +87,7 @@ const facts = [
 function Index() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   useReveal();
+  useAnchorScroll();
 
   return (
     <div className="min-h-screen bg-navy font-sans text-navy-foreground antialiased selection:bg-gold selection:text-navy">
