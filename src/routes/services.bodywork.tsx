@@ -5,17 +5,10 @@ import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/bodywork")({
-  head: () => ({
-    meta: [
-      { title: "Кузовной ремонт — Triumph Auto Service" },
-      {
-        name: "description",
-        content: "Кузовной ремонт и сварочные работы, стапель, рихтовка. Закуп и подбор кузовных запчастей с нашей стороны.",
-      },
-    ],
-  }),
+  head: () => buildHead("/services/bodywork"),
   component: BodyworkPage,
 });
 

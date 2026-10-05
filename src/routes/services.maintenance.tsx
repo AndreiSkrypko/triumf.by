@@ -4,14 +4,10 @@ import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/maintenance")({
-  head: () => ({
-    meta: [
-      { title: "Сопровождение авто — Triumph Auto Service" },
-      { name: "description", content: "Обслуживание автомобиля весь срок владения: масла, фильтры, плановое ТО, сезонные работы." },
-    ],
-  }),
+  head: () => buildHead("/services/maintenance"),
   component: MaintenancePage,
 });
 

@@ -1,17 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalList, LegalPageShell, LegalSection } from "@/components/site/LegalPageShell";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/consent")({
-  head: () => ({
-    meta: [
-      { title: "Согласие на обработку персональных данных — Triumph Auto Service" },
-      {
-        name: "description",
-        content: "Текст согласия на обработку персональных данных при отправке заявки на сайте Triumph Auto Service.",
-      },
-    ],
-  }),
+  head: () => buildHead("/consent"),
   component: ConsentPage,
 });
 

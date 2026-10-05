@@ -2,26 +2,16 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
+process.env.VITE_SITE_URL ??= process.env.SITE_URL ?? "https://triumf.by";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const outPath = join(root, "public", "sitemap.xml");
 
-const siteUrl = (process.env.SITE_URL || process.env.VITE_SITE_URL || "https://triumf.by").replace(/\/$/, "");
+const { getPrerenderPaths, getSiteOrigin, SEO_PAGES } = await import("../src/lib/seo.ts");
 
-/** Public indexable routes (exclude thank-you and other post-submit pages). */
-const paths = [
-  "/",
-  "/contacts",
-  "/consent",
-  "/privacy",
-  "/services/usa-cars",
-  "/services/bodywork",
-  "/services/paintwork",
-  "/services/mechanical",
-  "/services/anticorrosion",
-  "/services/maintenance",
-];
-
+const siteUrl = getSiteOrigin();
+const paths = getPrerenderPaths();
 const lastmod = new Date().toISOString().slice(0, 10);
 
 const urls = paths

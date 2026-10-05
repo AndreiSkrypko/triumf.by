@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sAnticor from "@/assets/s-anticor.webp";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
@@ -8,15 +9,7 @@ import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
 
 export const Route = createFileRoute("/services/anticorrosion")({
-  head: () => ({
-    meta: [
-      { title: "Антикоррозийная обработка — Triumph Auto Service" },
-      {
-        name: "description",
-        content: "Антикоррозийная обработка автомобиля: подготовка, нанесение составов, защита скрытых полостей и днища. Работаем по договору.",
-      },
-    ],
-  }),
+  head: () => buildHead("/services/anticorrosion"),
   component: AnticorrosionPage,
 });
 

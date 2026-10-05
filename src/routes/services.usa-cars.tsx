@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import s1 from "@/assets/s1.webp";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 import { ServiceFeaturesSection } from "@/components/site/ServiceFeaturesSection";
 import { ServiceHero } from "@/components/site/ServiceHero";
 import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSection";
@@ -8,12 +9,7 @@ import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
 
 export const Route = createFileRoute("/services/usa-cars")({
-  head: () => ({
-    meta: [
-      { title: "Авто из США и Канады — Triumph Auto Service" },
-      { name: "description", content: "Подбор автомобилей на аукционах Copart, IAAI и Manheim. Работаем по договору: проверка истории, торги, доставка и растаможка." },
-    ],
-  }),
+  head: () => buildHead("/services/usa-cars"),
   component: UsaCarsPage,
 });
 

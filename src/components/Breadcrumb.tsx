@@ -11,7 +11,7 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="flex flex-wrap items-center gap-2 py-4 text-xs uppercase tracking-[0.12em] text-navy-foreground/50">
+    <nav aria-label="Хлебные крошки" className="flex flex-wrap items-center gap-2 py-4 text-xs uppercase tracking-[0.12em] text-navy-foreground/50">
       {items.map((item, index) => (
         <div key={item.href} className="flex items-center gap-2">
           {index > 0 && <span className="text-gold">/</span>}

@@ -6,17 +6,10 @@ import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSec
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/mechanical")({
-  head: () => ({
-    meta: [
-      { title: "Слесарные работы — Triumph Auto Service" },
-      {
-        name: "description",
-        content: "Ремонт тормозной системы, рулевого, подвески, двигателя. Замена масла, техжидкостей и ГРМ. Подбор слесарных запчастей с нашей стороны.",
-      },
-    ],
-  }),
+  head: () => buildHead("/services/mechanical"),
   component: MechanicalPage,
 });
 

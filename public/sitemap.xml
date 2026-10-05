@@ -13,13 +13,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://triumf.by/consent</loc>
+    <loc>https://triumf.by/privacy</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://triumf.by/privacy</loc>
+    <loc>https://triumf.by/consent</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

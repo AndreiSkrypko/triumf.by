@@ -14,20 +14,12 @@ import sMaintenance from "@/assets/s-maintenance.webp";
 import { ContactModal } from "@/components/ContactModal";
 import { ServicePriceBadge } from "@/components/site/ServiceOfferCardsSection";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 const { prices } = COMPANY;
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Triumph Auto Service — авто под ключ из США и Канады" },
-      { name: "description", content: "Пригон авто из США/Канады, кузовной ремонт, покраска, антикор, слесарные работы и обслуживание. Автомобиль под ключ в одной компании." },
-      { property: "og:title", content: "Triumph Auto Service — авто под ключ" },
-      { property: "og:description", content: "Пригон, ремонт, покраска, слесарка и сопровождение — всё в одних руках." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () => buildHead("/"),
   component: Index,
 });
 

@@ -6,14 +6,10 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { useReveal } from "@/hooks/use-reveal";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/contacts")({
-  head: () => ({
-    meta: [
-      { title: "Контакты — Triumph Auto Service" },
-      { name: "description", content: "Адрес, телефон и реквизиты Triumph Auto Service в Минске." },
-    ],
-  }),
+  head: () => buildHead("/contacts"),
   component: ContactsPage,
 });
 

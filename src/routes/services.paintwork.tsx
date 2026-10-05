@@ -6,14 +6,10 @@ import { ServiceOfferCardsSection } from "@/components/site/ServiceOfferCardsSec
 import { ServicePageShell } from "@/components/site/ServicePageShell";
 import { ServiceStepsSection } from "@/components/site/ServiceStepsSection";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/paintwork")({
-  head: () => ({
-    meta: [
-      { title: "Малярные работы — Triumph Auto Service" },
-      { name: "description", content: "Покраска в камере с точным подбором цвета, локальный ремонт и полировка до заводского блеска." },
-    ],
-  }),
+  head: () => buildHead("/services/paintwork"),
   component: PaintworkPage,
 });
 

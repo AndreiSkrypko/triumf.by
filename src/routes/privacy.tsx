@@ -1,17 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalList, LegalPageShell, LegalSection } from "@/components/site/LegalPageShell";
 import { COMPANY } from "@/lib/company";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Политика обработки персональных данных — Triumph Auto Service" },
-      {
-        name: "description",
-        content: "Политика обработки персональных данных Triumph Auto Service: цели, сроки хранения, права субъектов данных.",
-      },
-    ],
-  }),
+  head: () => buildHead("/privacy"),
   component: PrivacyPage,
 });
 

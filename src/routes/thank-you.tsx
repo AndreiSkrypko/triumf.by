@@ -4,15 +4,10 @@ import { ContactModal } from "@/components/ContactModal";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { useReveal } from "@/hooks/use-reveal";
+import { buildHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/thank-you")({
-  head: () => ({
-    meta: [
-      { title: "Спасибо за заявку — Triumph Auto Service" },
-      { name: "description", content: "Ваша заявка принята. Мы свяжемся с вами в ближайшее время." },
-      { name: "robots", content: "noindex, nofollow" },
-    ],
-  }),
+  head: () => buildHead("/thank-you"),
   component: ThankYouPage,
 });
 

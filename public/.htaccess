@@ -7,7 +7,14 @@
   # Lead form API (PHP on shared hosting; Vercel uses api/lead.ts instead)
   RewriteRule ^api/lead$ api/lead.php [L,QSA]
 
-  # Do not rewrite real files, folders, or API
+  # Prerendered route shells (SEO / Open Graph for each URL)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+
+  # SPA fallback
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} !^/api/

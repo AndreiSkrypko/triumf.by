@@ -5,8 +5,8 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-navy-foreground/10 bg-navy">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="sm:col-span-2 lg:col-span-4">
             <div className="flex flex-wrap items-center gap-2 font-display tracking-[0.2em] text-navy-foreground/80 sm:gap-3 sm:tracking-[0.3em]">
               TRIUMPH <span className="h-1 w-1 rotate-45 bg-gold" /> AUTO SERVICE
             </div>
@@ -31,17 +31,42 @@ export function SiteFooter() {
             </Link>
           </div>
 
-          <nav className="flex flex-col gap-2 text-sm text-navy-foreground/65">
-            <span className="eyebrow text-gold">Разделы</span>
+          <nav aria-label="Услуги" className="flex flex-col gap-2 text-sm text-navy-foreground/65 lg:col-span-3">
+            <span className="eyebrow text-gold">Услуги</span>
+            <Link to="/services/usa-cars" className="transition hover:text-gold">
+              Авто из США и Канады
+            </Link>
+            <Link to="/services/bodywork" className="transition hover:text-gold">
+              Кузовной ремонт
+            </Link>
+            <Link to="/services/paintwork" className="transition hover:text-gold">
+              Малярные работы
+            </Link>
+            <Link to="/services/mechanical" className="transition hover:text-gold">
+              Слесарные работы
+            </Link>
+            <Link to="/services/anticorrosion" className="transition hover:text-gold">
+              Антикор
+            </Link>
+            <Link to="/services/maintenance" className="transition hover:text-gold">
+              Сопровождение и ТО
+            </Link>
+          </nav>
+
+          <nav aria-label="Разделы сайта" className="flex flex-col gap-2 text-sm text-navy-foreground/65 lg:col-span-2">
+            <span className="eyebrow text-gold">Сайт</span>
+            <Link to="/" className="transition hover:text-gold">
+              Главная
+            </Link>
             <Link to="/contacts" className="transition hover:text-gold">
               Контакты
             </Link>
             <Link to="/#services" className="transition hover:text-gold">
-              Услуги
+              Все услуги на главной
             </Link>
           </nav>
 
-          <nav className="flex flex-col gap-2 text-sm text-navy-foreground/65">
+          <nav aria-label="Документы" className="flex flex-col gap-2 text-sm text-navy-foreground/65 lg:col-span-3">
             <span className="eyebrow text-gold">Документы</span>
             <Link to="/privacy" className="transition hover:text-gold">
               Политика ПДн

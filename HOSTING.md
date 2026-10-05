@@ -46,6 +46,12 @@ npm run build:hosting
 - Отправка формы на главной или в модальном окне → редирект на `/thank-you`, заявка приходит в Telegram.
 - В [Google Search Console](https://search.google.com/search-console) добавьте сайт и укажите sitemap: `https://ваш-домен/sitemap.xml`.
 
+## SEO
+
+При `npm run build` для каждой страницы генерируется HTML-оболочка с title, description, canonical, Open Graph, Twitter Card и JSON-LD (AutoRepair, Service, BreadcrumbList). Превью ссылок в Telegram/VK и индексация не зависят только от JavaScript.
+
+Проверка: откройте исходный код страницы `view-source:https://triumf.by/services/bodywork` — в `<head>` должны быть `og:image` и `application/ld+json`.
+
 ## Vercel / Lovable
 
 Для Vercel по-прежнему используется `api/lead.ts`; PHP на Vercel не нужен. Команда `npm run build` (без `:hosting`) достаточна для облачного деплоя.
