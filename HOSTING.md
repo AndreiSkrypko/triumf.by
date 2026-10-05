@@ -41,6 +41,8 @@ npm run build:hosting
 - https://ваш-домен/contacts
 - https://ваш-домен/sitemap.xml
 - https://ваш-домен/robots.txt
+- https://ваш-домен/google5b91edc1a78be70d.html (Google Search Console)
+- https://ваш-домен/yandex_65265188e53bcc63.html (Яндекс.Вебмастер)
 
 ## 5. Проверка после выкладки
 

@@ -4,6 +4,17 @@
   RewriteEngine On
   RewriteBase /
 
+  # Force https://triumf.by (nginx terminates SSL in front of Apache, so check its header too)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://triumf.by%{REQUEST_URI} [L,R=301]
+
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://triumf.by%{REQUEST_URI} [L,R=301]
+
+  # SEO / verification files must never fall through to SPA index.html
+  RewriteRule ^(robots\.txt|sitemap\.xml|google[a-z0-9]+\.html|yandex_[a-z0-9]+\.html)$ - [L]
+
   # Lead form API (PHP on shared hosting; Vercel uses api/lead.ts instead)
   RewriteRule ^api/lead$ api/lead.php [L,QSA]
 
@@ -22,6 +33,10 @@
   RewriteRule ^ index.html [L]
 </IfModule>
 
+<FilesMatch "^(sitemap\.xml)$">
+  Header set Content-Type "application/xml; charset=UTF-8"
+</FilesMatch>
+
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
@@ -29,6 +44,7 @@
 </IfModule>
 
 <IfModule mod_mime.c>
+  AddType application/xml .xml
   AddType image/svg+xml .svg
   AddType application/manifest+json .webmanifest
 </IfModule>
